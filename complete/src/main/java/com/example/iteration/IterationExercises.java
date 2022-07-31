@@ -15,16 +15,6 @@ public class IterationExercises {
         return reversedSiblings;
     }
 
-    public String[] reverseLetters(String[] alphabet) {
-        System.out.println(alphabet);
-        String[] reversedAlphabet = new String[alphabet.length];
-        for (int i = 0; i < alphabet.length; i++) {
-            System.out.println("Loop over array with index, child name is " + alphabet[i]);
-            reversedAlphabet[alphabet.length - (i + 1)] = alphabet[i];
-        }
-
-        return reversedAlphabet;
-    }
 
     public int[] reverseIntegers(int[] numbers) {
         System.out.println(numbers);
