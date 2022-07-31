@@ -26,5 +26,14 @@ public class IterationExercises {
 
         return reversedNumbers;
     }
+
+    public String reverseWord(String word){
+        String[] separated_letters = word.split("");
+        /*
+        TODO Call existing function to reverse array of separated letters
+        TODO Join the output from above to form a string to return
+         */
+        return null;
+    }
 }
     

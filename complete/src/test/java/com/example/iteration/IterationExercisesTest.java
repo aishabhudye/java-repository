@@ -2,9 +2,8 @@ package com.example.iteration;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IterationExercisesTest {
 
@@ -35,5 +34,12 @@ class IterationExercisesTest {
         int[] reversedIntegers = exercises.reverseIntegers(numbers);
         assertArrayEquals(reversedNumbers, reversedIntegers);
 
+    }
+
+    @Test
+    void test_reverse_word(){
+        String longestEnglishWord = "Pneumonoultramicroscopicsilicovolcanoconiosis";
+        String longestEnglishWordInReverse = exercises.reverseWord(longestEnglishWord);
+        assertEquals("sisoinoconaclovoci", longestEnglishWordInReverse);
     }
 }
