@@ -11,7 +11,6 @@ public class IterationExercises {
             System.out.println("Loop over array with index, child name is " + siblings[i]);
             reversedSiblings[siblings.length - (i + 1)] = siblings[i];
         }
-
         return reversedSiblings;
     }
 
@@ -27,13 +26,28 @@ public class IterationExercises {
         return reversedNumbers;
     }
 
-    public String reverseWord(String word){
+    private String joinArrayElments(String[] separated_letters_in_reverse) {
+        String join = "";
+        for (int i = 0; i < separated_letters_in_reverse.length; i++) {
+            String element = separated_letters_in_reverse[i];
+            join = join + element;
+        }
+        return join;
+    }
+
+    public String reverseWord(String word) {
+        System.out.println(word);
         String[] separated_letters = word.split("");
-        /*
-        TODO Call existing function to reverse array of separated letters
-        TODO Join the output from above to form a string to return
-         */
-        return null;
+        String[] separated_letters_in_reverse = reverseArray(separated_letters);
+        String reversedWord = joinArrayElments(separated_letters_in_reverse);
+        return reversedWord;
     }
 }
+
+
+
+
+
+
+
     

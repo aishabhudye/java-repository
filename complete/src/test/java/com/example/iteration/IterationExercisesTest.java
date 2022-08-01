@@ -40,6 +40,6 @@ class IterationExercisesTest {
     void test_reverse_word(){
         String longestEnglishWord = "Pneumonoultramicroscopicsilicovolcanoconiosis";
         String longestEnglishWordInReverse = exercises.reverseWord(longestEnglishWord);
-        assertEquals("sisoinoconaclovoci", longestEnglishWordInReverse);
+        assertEquals("sisoinoconaclovociliscipocsorcimartluonomuenP", longestEnglishWordInReverse);
     }
 }
