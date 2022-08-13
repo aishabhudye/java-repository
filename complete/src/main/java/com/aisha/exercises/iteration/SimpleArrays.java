@@ -1,4 +1,4 @@
-package com.example.iteration;
+package com.aisha.exercises.iteration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class SimpleArrays {
 
         System.out.println();
         {
-            List<String> kids= new ArrayList<>();
+            List<String> kids = new ArrayList<>();
             kids.add("Aisha");
             kids.add("Hafsa");
             kids.add("Talha");
@@ -57,7 +57,7 @@ public class SimpleArrays {
 
             String[] things = {"Aisha", "Hafsa", "Talha"};
             int y;
-            for (y= 0; y < things.length; y++) {
+            for (y = 0; y < things.length; y++) {
                 System.out.println("Child at index " + y + " is " + things[y]);
             }
 
