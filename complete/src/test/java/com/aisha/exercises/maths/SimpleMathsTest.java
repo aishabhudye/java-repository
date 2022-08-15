@@ -4,7 +4,10 @@ package com.aisha.exercises.maths;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleMathsTest {
 
@@ -18,18 +21,20 @@ public class SimpleMathsTest {
         assertArrayEquals(expectedEvenNumbers, evenNumbers);
     }
 
-    @Disabled
+    @Test
     public void test_list_odd_numbers() {
         int[] oddNumbersNumbers = simpleMaths.listOddNumbers(10);
         int[] expectedOddNumbers = {1, 3, 5, 7, 9};
         assertArrayEquals(expectedOddNumbers, oddNumbersNumbers);
     }
 
-    @Disabled
+    @Test
     public void test_list_triangular_numbers() {
-        int[] triangularNumbers = simpleMaths.listTriangularNumbers(10);
-        int[] expectedTriangularNumbers = {1, 3, 6, 10};
-        assertArrayEquals(expectedTriangularNumbers, triangularNumbers);
+        List<Integer> triangularNumbers = simpleMaths.listTriangularNumbers(10);
+        Integer[] triangularNumbersArray = {1,3,6,10};
+        List<Integer> expectedTriangularNumbers = Arrays.asList(triangularNumbersArray);
+        triangularNumbers.removeAll(expectedTriangularNumbers);
+        assertEquals(0, triangularNumbers.size());
     }
 
 }

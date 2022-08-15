@@ -1,5 +1,10 @@
 package com.aisha.exercises.maths;
 
+import com.sun.org.apache.xerces.internal.impl.xs.util.XInt;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimpleMaths {
     /**
      * It helps to think of arrays as a pigeonhole system and the index as a location in the system
@@ -16,7 +21,7 @@ public class SimpleMaths {
         int counter = 0;
         //The div operation works here as 10/2=5 and 11/2=5#
         //evenNumber is the pigeonhole and limit/2 is its size
-        int[] evenNumbers = new int[limit / 2];
+        int[] evenNumbers = new int[limit / 2 + 1];
         for (int i = 0; i <= limit; i++) {
             if (i % 2 == 0) {
                 System.out.println(counter);
@@ -55,20 +60,25 @@ public class SimpleMaths {
         return oddNumbersNumbers;
     }
 
-    public int[] listTriangularNumbers(int limit) {
-        System.out.println(limit);
+    public List<Integer> listTriangularNumbers(int limit) {
 
-        //Declare a counter variable of type int and initialise its value to 0
-        int counter = 0;
-        //evenNumber is the pigeonhole and limit/2 is its size
-        int[] triangularNumbers = new int[limit - 6];
-        for (int i = 0; i <= limit; i++) {
-            System.out.println(counter);
+        List<Integer> triangularNumbers = new ArrayList<>();
 
-            //Google a general formula for triangular numbers  T = (n)(n + 1) / 2.
-            return triangularNumbers;
+        int triangularNumber = 1;
+        for (int i = 1; triangularNumber <= limit-1; i++) {
+
+            //Calculate the triangular number
+            triangularNumber = i*(i+1)/2;
+            triangularNumbers.add(triangularNumber);
         }
-
         return triangularNumbers;
     }
 }
+
+
+//Use a loop
+//Lookup the mod or div operation in Java
+
+
+
+
