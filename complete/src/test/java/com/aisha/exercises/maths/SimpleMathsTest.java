@@ -37,26 +37,28 @@ public class SimpleMathsTest {
     }
 
     @Test
-    public void test_quadratic_numbers() {
-        int discriminant = simpleMaths.quadraticNumbers();
-        assertEquals(discriminant,discriminant );
+    public void test_2_distinct_real_roots() {
+        // x*x -4*x +3 = 0
+        String outcome = simpleMaths.determineRoots(1, -4, 3);
+        assertEquals("2 distinct real roots",outcome );
 
     }
+
     @Test
-    public void test_one_root_numbers() {
-        int discriminant = simpleMaths.quadraticNumbers();
-        assertEquals(discriminant,discriminant );
-
+    public void test_single_root() {
+        //x*x -2*x +1 = 0
+        String outcome = simpleMaths.determineRoots(1, -2, 1);
+        assertEquals("single real root",outcome );
     }
+
+
+
     @Test
-    public void test_no_root_numbers() {
-        int discriminant = simpleMaths.quadraticNumbers();
-        assertEquals(discriminant,discriminant );
-
-    }
-
-
-}
+    public void test_no_real_root() {
+        // x*x +1 = 0
+        String outcome = simpleMaths.determineRoots(1, 0, 1);
+        assertEquals("no real roots",outcome );
+    }}
 
 
 

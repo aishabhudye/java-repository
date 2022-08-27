@@ -73,22 +73,17 @@ public class SimpleMaths {
     }
 
 
-    static int values(int a, int b, int c) {
-        int discriminant = ((b * b) - (4 * a * c));
-        if (((b * b) - (4 * a * c)) > 0)
-            System.out.println ("2 distinct real roots");
-        else if (((b * b) - (4 * a * c)) == 0)
-            System.out.println("single real root");
-        else
-            System.out.println("no real roots");
-        return discriminant;
+    public String determineRoots(int a, int b, int c) {
+        int discriminant = b * b - 4 * a * c;
+        if (discriminant > 0) {
+            return "2 distinct real roots";
+        } else if (discriminant == 0) {
+            return "single real root";
+        } else {
+            return "no real roots";
+        }
     }
 
-    public int quadraticNumbers() {
-        int a = 1, b = -4, c = 3;
-        values(a, b, c);
-        return a;
-    }
 }
 
 
