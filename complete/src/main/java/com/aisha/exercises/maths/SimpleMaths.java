@@ -1,7 +1,5 @@
 package com.aisha.exercises.maths;
 
-import com.sun.org.apache.xerces.internal.impl.xs.util.XInt;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,19 +63,49 @@ public class SimpleMaths {
         List<Integer> triangularNumbers = new ArrayList<>();
 
         int triangularNumber = 1;
-        for (int i = 1; triangularNumber <= limit-1; i++) {
+        for (int i = 1; triangularNumber <= limit - 1; i++) {
 
             //Calculate the triangular number
-            triangularNumber = i*(i+1)/2;
+            triangularNumber = i * (i + 1) / 2;
             triangularNumbers.add(triangularNumber);
         }
         return triangularNumbers;
     }
+
+
+    static int values(int a, int b, int c) {
+        int discriminant = ((b * b) - (4 * a * c));
+        if (((b * b) - (4 * a * c)) > 0)
+            System.out.println ("2 distinct real roots");
+        else if (((b * b) - (4 * a * c)) == 0)
+            System.out.println("single real root");
+        else
+            System.out.println("no real roots");
+        return discriminant;
+    }
+
+    public int quadraticNumbers() {
+        int a = 1, b = -4, c = 3;
+        values(a, b, c);
+        return a;
+    }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 //Use a loop
 //Lookup the mod or div operation in Java
+
+
 
 
 
