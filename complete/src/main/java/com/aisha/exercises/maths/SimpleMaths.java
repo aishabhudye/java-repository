@@ -87,16 +87,6 @@ public class SimpleMaths {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 //Use a loop
 //Lookup the mod or div operation in Java
 

@@ -11,10 +11,9 @@ public class SimpleArrays {
 
     private void runCode() {
         String[] siblings = {"Aisha", "Hafsa", "Talha"};
-        int i;
-        for (i = 0; i < siblings.length; i++) {
-            System.out.println("Loop over array with index, child name is " + siblings[i]);
-        }
+        iterateUsingIndex(siblings);
+        iterateWithoutIndex(siblings);
+
 
         System.out.println("==============================");
         System.out.println();
@@ -42,26 +41,28 @@ public class SimpleArrays {
             System.out.println("Loop over list without index, child name is " + child);
         }
 
+    }
 
-        System.out.println();
-        {
-            List<String> kids = new ArrayList<>();
-            kids.add("Aisha");
-            kids.add("Hafsa");
-            kids.add("Talha");
+    private static void iterateWithoutIndex(String[] siblings) {
+        int count = 0;
+        for (String item : siblings) {
+            System.out.println("Item at index " + count + " is " + item);
+            count ++;
+        }
+    }
 
-            System.out.println("List: " + kids);
-            String element = kids.get(0);
-            System.out.println("the element at index 0 is "
-                    + element);
-
-            String[] things = {"Aisha", "Hafsa", "Talha"};
-            int y;
-            for (y = 0; y < things.length; y++) {
-                System.out.println("Child at index " + y + " is " + things[y]);
-            }
-
-
+    private static void iterateUsingIndex(String[] siblings) {
+        /*
+         Start of loop
+         i is initialised to 0
+         a check is carried to see if i is less than the length of the array
+         if the check passes, it then executes the body
+         finally i is incremented
+         End of loop
+         Repeat loop
+         */
+        for (int i = 0; i < siblings.length; i++) {
+            System.out.println("Loop over array with index, child name is " + siblings[i]);
         }
     }
 }

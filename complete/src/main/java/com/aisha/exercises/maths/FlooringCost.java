@@ -5,5 +5,4 @@ public class FlooringCost {
     int width = 0;
 
 
-
 }

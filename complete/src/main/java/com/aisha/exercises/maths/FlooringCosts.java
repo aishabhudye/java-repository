@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class FlooringCosts {
 
-    public static void main (String[] args){
+    public static void main(String[] args) {
         FlooringCosts flooringCosts = new FlooringCosts();
         flooringCosts.run();
     }

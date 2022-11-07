@@ -10,7 +10,6 @@ class FlooringCostsTest {
 
     @Test
     public void test_scenario_1(){
-
         assertEquals(150.00,flooringInputs.flooringCosts(5.0F,3.0F));
     }
 
