@@ -52,7 +52,7 @@ public class MorseCodeTest {
     @Test
     public void test_valid_morse() {
         String morse_message = ".--...";
-        assertTrue(target.valid_morse(morse_message));
+        assertTrue(target.isValid(morse_message));
 
     }
 

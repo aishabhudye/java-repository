@@ -36,16 +36,16 @@ public class MorseCode {
 
 
     public String encoder(String morseDecodedMessage) {
-        morseDecodedMessage.equalsIgnoreCase("");
-        String[] alphabetLetters = morseDecodedMessage.split("");
+
+        String[] letters = morseDecodedMessage.split("");
         String encodedMessage = "";
         int count = 0;
-        for (String alphabetChar : alphabetLetters) {
-            System.out.println(alphabetChar);
-            if (alphabetChar.equals(" ")) {
-                alphabetChar.equals("/");
+        for (String letter : letters) {
+            System.out.println(letter);
+            if (letter.equals(" ")) {
+                letter.equals("/");
             }
-            String morse = (String) morseDictionary.get(alphabetChar);
+            String morse = morseDictionary.get(letter.toUpperCase());
             if (count > 0) {
                 encodedMessage = encodedMessage + " " + morse;
             }else{
@@ -63,14 +63,14 @@ public class MorseCode {
 
         String[] morseLetters = morse_encoded_message.split(" ");
         String decodedMessage = "";
-        if (valid_morse(morse_encoded_message) == true) {
-            for (String morseChar : morseLetters) {
-                System.out.println(morseChar);
-                if (morseChar.equals("/")) {
-                    morseChar.equals(" ");
+        if (isValid(morse_encoded_message) == true) {
+            for (String morseCharacter : morseLetters) {
+                System.out.println(morseCharacter);
+                if (morseCharacter.equals("/")) {
+                    morseCharacter.equals(" ");
                 }
-                String message = invertedMorseDictionary.get(morseChar);
-                decodedMessage = decodedMessage + message;
+                String decodedCharacter = invertedMorseDictionary.get(morseCharacter);
+                decodedMessage = decodedMessage + decodedCharacter;
             }
         } else {
             return "ERROR";
@@ -89,7 +89,7 @@ public class MorseCode {
     }
 
 
-    public boolean valid_morse(String morse_encoded_message) {
+    public boolean isValid(String morse_encoded_message) {
         String[] morse_char = morse_encoded_message.split(";");
         boolean validMorse = morse_char.equals("-") || morse_char.equals(".");
         if (validMorse != morse_char.equals("-") || validMorse != morse_char.equals(".")) {
