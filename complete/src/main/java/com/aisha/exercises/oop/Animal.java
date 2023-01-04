@@ -3,9 +3,16 @@ package com.aisha.exercises.oop;
 public class Animal {
 
     /*
-    Why are some of these variables be private and others protected? Read about encapsulation in Object Oriented Programming (OOP) concepts
-    How does this work in conjunction with getter methods?
-    What is the role of the various modifiers in OOP (private, protected, public and none)
+    Q: Why are some of these variables be private and others protected? Read about encapsulation in Object Oriented Programming (OOP) concepts
+    A: Private variables can only be accessed in it's own class however protected variables can only be accessed in it's own package.
+
+    Q: How does this work in conjunction with getter methods?
+    A: Getter and setter methods allow access to private variables
+
+    Q: What is the role of the various modifiers in OOP (private, protected, public and none)
+    A:  public : the code is accessible to all classes.
+        private : the code is accessible within the declared classes
+        protected : the code is accessible in the same package and subclasses
      */
     protected boolean plantEater;
     protected boolean meatEater;
@@ -15,7 +22,8 @@ public class Animal {
     private float waist; //In metres
 
     /*
-    Why is a property with a public method bad practice?
+    Q: Why is a property or a field with a public modifier bad practice?
+    A: If the property is public, this it can be easily changed by anyone.
      */
     public String name;
 
@@ -25,7 +33,8 @@ public class Animal {
     String id;
 
     /*
-    Why is it good to use a constructor?
+    Q: Why is it good to use a constructor?
+    A: Constructors are used to initialize the objects of the class with initial values.
      */
     public Animal(boolean plantEater, boolean meatEater, boolean walksOnTwoLimbs, float mass, float height, float waist) {
         this.plantEater = plantEater;
@@ -37,8 +46,9 @@ public class Animal {
     }
 
     /*
-    Why is this variation of the constructor needed?
+    Q: Why is this variation of the constructor needed?
     It's called an overloaded constructor method as it has the same name but different number of parameters
+    A: Object might need to be created with less or more properties set at construction time, hence the need for overloaded constructors
      */
     public Animal(float mass, float height, float waist) {
         this.mass = mass;
@@ -71,23 +81,59 @@ public class Animal {
     }
 
     //TODO: Why is this method in the wrong place (i.e. in this superclass)? Move it to the right place
-    public boolean isObese() {
-        return false;
+    public boolean isObese(float height, float weight) {
+        float BMI = weight / height;
+        if (BMI >= 30) {
+            System.out.println("Obese");
+            return true;
+        } else {
+            System.out.println("Not obese");
+            return false;
+        }
+
     }
 
     //TODO: Why is this method in the wrong place (i.e. in this superclass)? Move it to the right place
-    public boolean hasHighDiabetesRisk() {
-        return false;
+    public boolean hasHighDiabetesRisk(float height, float weight) {
+        float BMI = weight / height;
+        if (BMI >= 30) {
+            System.out.println("High Diabetes Risk");
+            return true;
+        } else {
+            System.out.println("Low Diabetes Risk");
+            return false;
+        }
     }
 
     //TODO: Implement this method; why is better placed in this superclass as opposed to the subclass
-    public boolean isOmnivorous(){
-        return false;
+    public boolean isOmnivorous() {
+        String animal = "";
+        boolean carnivorous = isMeatEater();
+        boolean herbivore = isPlantEater();
+        if (animal.equals(carnivorous) && animal.equals(herbivore)) {
+            System.out.println("Omnivorous");
+            return true;
+        } else {
+            System.out.println("Not Omnivorous");
+            return false;
+        }
     }
+
 
     //TODO: Override this method, so each animal makes the right noise for its species
-    public String makeSomeNoise(){
-        return "GRRRR!";
+    public String makeSomeNoise() {
+        String dog  = "";
+        String cat = "";
+        String animal = "";
+        String animalNoise = "";
+        if(animal.equals(dog)){
+            animalNoise.equals("WOOF");
+        }else{
+            if(animal.equals(cat)){
+                animalNoise.equals("MEOW");
+            }
+        }
+        System.out.println(animalNoise);
+        return animalNoise;
     }
-
 }
