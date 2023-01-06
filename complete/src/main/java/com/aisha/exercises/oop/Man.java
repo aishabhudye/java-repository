@@ -32,4 +32,8 @@ public class Man extends Animal {
         }
     }
 
+    @Override
+    public String makeSomeNoise() {
+        return "OIIII!";
+    }
 }

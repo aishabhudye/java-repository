@@ -7,4 +7,9 @@ public class Cat extends Animal{
         this.meatEater = true;
         this.twoLimbsAsLegs = false;
     }
+
+    @Override
+    public String makeSomeNoise() {
+        return "MEOWWW!";
+    }
 }

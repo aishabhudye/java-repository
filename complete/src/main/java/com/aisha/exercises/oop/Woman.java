@@ -33,4 +33,9 @@ public class Woman extends Animal {
 
 
     }
+
+    @Override
+    public String makeSomeNoise() {
+        return "Ewww";
+    }
 }

@@ -122,18 +122,6 @@ public class Animal {
 
     //TODO: Override this method, so each animal makes the right noise for its species
     public String makeSomeNoise() {
-        String dog  = "";
-        String cat = "";
-        String animal = "";
-        String animalNoise = "";
-        if(animal.equals(dog)){
-            animalNoise.equals("WOOF");
-        }else{
-            if(animal.equals(cat)){
-                animalNoise.equals("MEOW");
-            }
-        }
-        System.out.println(animalNoise);
-        return animalNoise;
+        return "GRRRR!";
     }
 }
