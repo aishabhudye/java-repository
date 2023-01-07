@@ -81,6 +81,7 @@ public class Animal {
     }
 
     //TODO: Why is this method in the wrong place (i.e. in this superclass)? Move it to the right place
+    //Obesity is a trait more commonly associated with humans not animals. It should be in the Man or Woman class.
     public boolean isObese(float height, float weight) {
         float BMI = weight / height;
         if (BMI >= 30) {
@@ -94,6 +95,7 @@ public class Animal {
     }
 
     //TODO: Why is this method in the wrong place (i.e. in this superclass)? Move it to the right place
+    //Diabetes is something that is common in human beings not in Animals. It should be in the Man or Woman class.
     public boolean hasHighDiabetesRisk(float height, float weight) {
         float BMI = weight / height;
         if (BMI >= 30) {
@@ -106,6 +108,7 @@ public class Animal {
     }
 
     //TODO: Implement this method; why is better placed in this superclass as opposed to the subclass
+    //Omnivorous is used to describe an animal.
     public boolean isOmnivorous() {
         String animal = "";
         boolean carnivorous = isMeatEater();
