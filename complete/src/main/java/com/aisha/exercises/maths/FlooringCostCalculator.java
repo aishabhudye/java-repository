@@ -2,10 +2,10 @@ package com.aisha.exercises.maths;
 
 import java.util.Scanner;
 
-public class FlooringCosts {
+public class FlooringCostCalculator {
 
     public static void main(String[] args) {
-        FlooringCosts flooringCosts = new FlooringCosts();
+        FlooringCostCalculator flooringCosts = new FlooringCostCalculator();
         flooringCosts.run();
     }
 
