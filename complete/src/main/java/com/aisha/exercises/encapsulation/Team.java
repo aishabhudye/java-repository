@@ -8,6 +8,7 @@ public class Team {
     private int goalsScored;
     private int goalsTaken;
 
+
     public Team(int played, int won, int drawn, int lost, int goalsScored, int goalsTaken) {
         this.played = played;
         this.won = won;
@@ -15,6 +16,7 @@ public class Team {
         this.lost = lost;
         this.goalsScored = goalsScored;
         this.goalsTaken = goalsTaken;
+
     }
 
 
@@ -40,5 +42,7 @@ public class Team {
 
     public int getGoalsTaken() {
         return goalsTaken;
+    }
+
     }
 }
