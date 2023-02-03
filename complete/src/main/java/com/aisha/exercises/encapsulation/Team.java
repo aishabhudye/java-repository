@@ -9,7 +9,7 @@ public class Team {
     private int goalsTaken;
 
 
-    public Team(int played, int won, int drawn, int lost, int goalsScored, int goalsTaken) {
+    public Team(int played, int won, int drawn, int lost, int goalsScored, int goalsTaken, int goalDifference, int points) {
         this.played = played;
         this.won = won;
         this.drawn = drawn;
@@ -44,5 +44,5 @@ public class Team {
         return goalsTaken;
     }
 
-    }
 }
+
