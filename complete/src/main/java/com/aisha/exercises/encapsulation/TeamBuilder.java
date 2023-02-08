@@ -28,7 +28,7 @@ public class TeamBuilder {
                 int goalsTaken = Integer.parseInt(values[6]);
                 int goalDifference = goalsScored - goalsTaken;
                 int points = (won * 3) + drawn;
-                Team team = new Team(played, won, drawn, lost, goalsScored, goalsTaken, goalDifference, points,name);
+                Team team = new Team(played, won, drawn, lost, goalsScored, goalsTaken, goalDifference, points, name);
                 teams.add(team);
                 System.out.println(teams);
 
@@ -40,4 +40,6 @@ public class TeamBuilder {
         }
         return teams;
     }
+
+
 }

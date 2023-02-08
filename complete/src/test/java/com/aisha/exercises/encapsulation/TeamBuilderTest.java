@@ -1,5 +1,6 @@
 package com.aisha.exercises.encapsulation;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 
@@ -26,29 +27,23 @@ class TeamBuilderTest {
 
     }
 
-
-    public Team testTeamProperties() {
+    public Team chelseaTeam() {
         String path = "C:\\Users\\Aisha\\IdeaProjects\\java-repository\\complete\\src\\main\\resources\\PremierLeagueTableUnsorted.csv";
         List<Team> teams = teamBuilder.build(path);
-        Team name = (Team) teamBuilder.build(path);
-        for(Team team:teams){
-            name = team;
-            String teamName = name.getName();
-            System.out.println(teamName);
-            if(teamName.equals("Chelsea")){
-                System.out.println(name);
-
+        for (Team team : teams) {
+            if (team.getName().equals("Chelsea")) {
+                System.out.println("The team is"+team);
             }
         }
-        return name;
-
+        return teams.get(15);
     }
+
     @Test
     public void testProperties(){
         String path = "C:\\Users\\Aisha\\IdeaProjects\\java-repository\\complete\\src\\main\\resources\\PremierLeagueTableUnsorted.csv";
-        Team actualChelsea = (Team) teamBuilder.build(path);
-        Team Chelsea = testTeamProperties();
-        assertEquals(Chelsea,actualChelsea);
+        Team expected = new Team(20,8,5,7,22,21,1,29,"Chelsea");
+        Team actual = chelseaTeam();
+        assertEquals(expected,actual);
     }
 
 
