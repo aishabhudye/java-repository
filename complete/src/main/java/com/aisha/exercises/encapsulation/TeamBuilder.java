@@ -18,7 +18,6 @@ public class TeamBuilder {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);
-                System.out.println(values[0]);
                 String name = values[0];
                 int played = Integer.parseInt(values[1]);
                 int won = Integer.parseInt(values[2]);
@@ -28,10 +27,8 @@ public class TeamBuilder {
                 int goalsTaken = Integer.parseInt(values[6]);
                 int goalDifference = goalsScored - goalsTaken;
                 int points = (won * 3) + drawn;
-                Team team = new Team(played, won, drawn, lost, goalsScored, goalsTaken, goalDifference, points, name);
+                Team team = new Team(name, played, won, drawn, lost, goalsScored, goalsTaken, goalDifference, points);
                 teams.add(team);
-                System.out.println(teams);
-
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
