@@ -1,6 +1,6 @@
 package com.aisha.exercises.encapsulation;
 
-public class Team implements Comparable<Team>{
+public class Team implements Comparable<Team> {
     private int played;
     private int won;
     private int drawn;
@@ -52,7 +52,7 @@ public class Team implements Comparable<Team>{
         return goalsTaken;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -66,8 +66,14 @@ public class Team implements Comparable<Team>{
 
     @Override
     public int compareTo(Team o) {
-        System.out.println(String.format("%s has %d point while the other has %d points",this.name, this.points, o.points));
-        return o.points - this.points;
+        System.out.println(String.format("%s has %d point while the other has %d points", this.name, this.points, o.points));
+        if(o.points - this.points !=0){
+            return o.points - this.points;
+        }else{
+            return o.goalDifference - this.goalDifference;
+        }
+
+
     }
 
 }

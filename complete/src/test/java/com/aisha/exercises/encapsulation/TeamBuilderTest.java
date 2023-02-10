@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -86,6 +87,23 @@ class TeamBuilderTest {
         Collections.sort(teams);
         assertEquals("Arsenal", teams.get(0).getName());
     }
+    @Test
+    public void teamShouldBeNewCastle(){
+      Collections.sort(teams);
+      assertEquals("Newcastle United",teams.get(2).getName());
+    }
+
+    @Test
+    public void teamShouldBeBrightonHoveAlbion(){
+       Collections.sort(teams);
+       assertEquals("Brighton & Hove Albion",teams.get(5).getName());
+    }
+    @Test
+    public void teamShouldBeLiverpool(){
+        Collections.sort(teams);
+        assertEquals("Liverpool",teams.get(8).getName());
+    }
+
 
 
 }
