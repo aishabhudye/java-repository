@@ -19,7 +19,7 @@ class TeamBuilderTest {
 
     @BeforeEach
     public void setUp(){
-        String path = "C:\\Users\\Aisha\\IdeaProjects\\java-repository\\complete\\src\\main\\resources\\PremierLeagueTableUnsorted.csv";
+        String path = "/home/aishab/IdeaProjects/java-repository/complete/src/main/resources/PremierLeagueTableUnsorted.csv";
         teams = teamBuilder.build(path);
         chelsea = new Team(CHELSEA, 20, 8, 5, 7, 22, 21, 1, 29);
     }
@@ -102,6 +102,12 @@ class TeamBuilderTest {
     public void teamShouldBeLiverpool(){
         Collections.sort(teams);
         assertEquals("Liverpool",teams.get(8).getName());
+    }
+
+    @Test
+    public void teamShouldLeicesterCity(){
+        Collections.sort(teams);
+        assertEquals("Leicester City",teams.get(13).getName());
     }
 
 
