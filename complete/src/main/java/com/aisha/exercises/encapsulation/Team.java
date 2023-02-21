@@ -67,12 +67,14 @@ public class Team implements Comparable<Team> {
     @Override
     public int compareTo(Team o) {
         System.out.println(String.format("%s has %d point while the other has %d points", this.name, this.points, o.points));
-        if (o.points - this.points != 0) {
-            return o.points - this.points;
-        } else if (o.points - this.points == 0) {
-            return o.goalDifference - this.goalDifference;
+        if (o.points == this.points) {
+            if (o.goalDifference == this.goalDifference) {
+                return o.goalsScored - this.goalsScored;
+            }else {
+                return o.goalDifference - this.goalDifference;
+            }
         } else {
-            return o.goalsScored - o.goalsScored;
+            return  o.points - this.points;
         }
     }
 
