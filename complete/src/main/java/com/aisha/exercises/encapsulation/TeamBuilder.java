@@ -1,10 +1,7 @@
 package com.aisha.exercises.encapsulation;
 
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,4 +36,19 @@ public class TeamBuilder {
     }
 
 
+    public void createFile(List<Team> teamList, String sortedFile) {
+        //We need to do the reverse of what we did in build
+        List<String[]> dataLines = new ArrayList<>();
+        dataLines.add(new String[]
+                { "John", "Doe", "38", "Comment Data\nAnother line of comment data" });
+        dataLines.add(new String[]
+                { "Jane", "Doe, Jr.", "19", "She said \"I'm being quoted\"" });
+
+        File csvOutputFile = new File(sortedFile);
+        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
