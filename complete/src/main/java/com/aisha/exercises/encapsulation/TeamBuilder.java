@@ -38,17 +38,15 @@ public class TeamBuilder {
 
     public void createFile(List<Team> teamList, String sortedFile) {
         //We need to do the reverse of what we did in build
-        List<String[]> dataLines = new ArrayList<>();
-        dataLines.add(new String[]
-                { "John", "Doe", "38", "Comment Data\nAnother line of comment data" });
-        dataLines.add(new String[]
-                { "Jane", "Doe, Jr.", "19", "She said \"I'm being quoted\"" });
+        String data = "This is a text inside the file.";
 
-        File csvOutputFile = new File(sortedFile);
-        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        try {
+            PrintWriter output = new PrintWriter(sortedFile);
+            output.println(data);
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
         }
     }
 }
