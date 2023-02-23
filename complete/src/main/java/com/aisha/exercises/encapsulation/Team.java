@@ -64,6 +64,19 @@ public class Team implements Comparable<Team> {
         return points;
     }
 
+
+   public String toCSVString() {
+        return name + "," +
+                played + ","+
+                won + "," +
+                drawn + "," +
+                lost + "," +
+                goalsScored + "," +
+                goalsTaken + "," +
+                goalDifference + "," +
+                points;
+    }
+
     @Override
     public int compareTo(Team o) {
         System.out.println(String.format("%s has %d point while the other has %d points", this.name, this.points, o.points));

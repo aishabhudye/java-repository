@@ -37,15 +37,15 @@ public class TeamBuilder {
 
 
     public void createFile(List<Team> teamList, String sortedFile) {
-        //We need to do the reverse of what we did in build
-        String data = "This is a text inside the file.";
 
         try {
             PrintWriter output = new PrintWriter(sortedFile);
-            output.println(data);
+            for (Team team : teamList) {
+                String stringVersion = team.toCSVString();
+                output.println(stringVersion);
+            }
             output.close();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.getStackTrace();
         }
     }
