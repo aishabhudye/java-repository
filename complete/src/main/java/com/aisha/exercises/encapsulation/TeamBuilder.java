@@ -39,10 +39,12 @@ public class TeamBuilder {
     public void createFile(List<Team> teamList, String sortedFile) {
 
         try {
+            int counter = 0;
             PrintWriter output = new PrintWriter(sortedFile);
             for (Team team : teamList) {
                 String stringVersion = team.toCSVString();
-                output.println(stringVersion);
+                output.println(counter+ " " + stringVersion);
+                counter = counter + 1;
             }
             output.close();
         } catch (Exception e) {
