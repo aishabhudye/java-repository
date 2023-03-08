@@ -48,7 +48,9 @@ public class BattleShips {
         int size;
         boolean horizontal;
         boolean vertical;
-        int numberOfShips = 5;
+        int numberOfShips = 2;
+        System.out.println("Build 5 ships of size 2,3,4,5,6");
+        for (int j =0; j<numberOfShips;j++){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the size: ");
         size = input.nextInt();
@@ -65,7 +67,7 @@ public class BattleShips {
             } else if (vertical) {
                 grid[X + i][Y] = Integer.parseInt("1");
             }
-        }
+        }}
         System.out.println("After updating an array element: ");
         printArray(grid);
     }
