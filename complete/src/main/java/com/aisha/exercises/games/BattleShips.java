@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BattleShips {
     public static void main(String[] args) {
         BattleShips battleShips = new BattleShips();
-        battleShips.R();
+        battleShips.placeShips();
     }
 
     public void setShips() {
@@ -30,7 +30,7 @@ public class BattleShips {
         }
     }
 
-    public void R(){
+    public void placeShips(){
         int[][] grid = {
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
@@ -49,12 +49,12 @@ public class BattleShips {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the size: ");
         size = input.nextInt();
+        System.out.println("Enter x value: ");
+        X = input.nextInt();
+        System.out.println("Enter y value: ");
+        Y = input.nextInt();
         for (int i = 0; i<size;i++){
-            System.out.println("Enter x value: ");
-            X = input.nextInt();
-            System.out.println("Enter y value: ");
-            Y = input.nextInt();
-            grid[X][Y] = Integer.parseInt("1");
+            grid[X][Y + i] = Integer.parseInt("1");
         }
         System.out.println("After updating an array element: ");
         printArray(grid);
