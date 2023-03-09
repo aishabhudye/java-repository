@@ -48,26 +48,26 @@ public class BattleShips {
         int size;
         boolean horizontal;
         boolean vertical;
-        int numberOfShips = 2;
-        System.out.println("Build 5 ships of size 2,3,4,5,6");
-        for (int j =0; j<numberOfShips;j++){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter the size: ");
-        size = input.nextInt();
-        System.out.println("Enter the starting x value: ");
-        X = input.nextInt();
-        System.out.println("Enter the starting y value: ");
-        Y = input.nextInt();
-        System.out.println("Enter the orientation H or V: ");
-        horizontal = input.hasNext("H");
-        vertical = input.hasNext("V");
-        for (int i = 0; i < size; i++) {
-            if (horizontal) {
-                grid[X][Y + i] = Integer.parseInt("1");
-            } else if (vertical) {
-                grid[X + i][Y] = Integer.parseInt("1");
+        int numberOfShips = 5;
+        for (int j = 0; j < numberOfShips; j++) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter the size: ");
+            size = input.nextInt();
+            System.out.println("Enter the starting x value: ");
+            X = input.nextInt();
+            System.out.println("Enter the starting y value: ");
+            Y = input.nextInt();
+            System.out.println("Enter the orientation H or V: ");
+            horizontal = input.hasNext("H");
+            vertical = input.hasNext("V");
+            for (int i = 0; i < size; i++) {
+                if (horizontal) {
+                    grid[X][Y + i] = Integer.parseInt("1");
+                } else if (vertical) {
+                    grid[X + i][Y] = Integer.parseInt("1");
+                }
             }
-        }}
+        }
         System.out.println("After updating an array element: ");
         printArray(grid);
     }
