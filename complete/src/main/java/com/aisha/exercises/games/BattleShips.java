@@ -30,7 +30,7 @@ public class BattleShips {
         }
     }
 
-    public void placeShips() {
+    public int[][] placeShips() {
         int[][] grid = {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -48,7 +48,7 @@ public class BattleShips {
         int size;
         boolean horizontal;
         boolean vertical;
-        int numberOfShips = 5;
+        int numberOfShips = 2;
         for (int j = 0; j < numberOfShips; j++) {
             Scanner input = new Scanner(System.in);
             System.out.println("Enter the size: ");
@@ -68,8 +68,8 @@ public class BattleShips {
                 }
             }
         }
-        System.out.println("After updating an array element: ");
         printArray(grid);
+        return grid;
     }
 
     private static void printArray(int[][] grid) {
