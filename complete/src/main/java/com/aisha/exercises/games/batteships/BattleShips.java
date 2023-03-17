@@ -1,36 +1,14 @@
-package com.aisha.exercises.games;
+package com.aisha.exercises.games.batteships;
 
 import java.util.Scanner;
 
 public class BattleShips {
     public static void main(String[] args) {
         BattleShips battleShips = new BattleShips();
-        battleShips.placeShips();
+        battleShips.placeVessels();
     }
 
-    public void setShips() {
-        String[][] grid = {
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", "X"},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", "X"},
-                {" ", " ", "X", "X", "X", " ", " ", " ", " ", " "},
-                {"X", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {"X", " ", " ", " ", " ", "X", " ", "X", " ", " "},
-                {"X", " ", " ", " ", " ", "X", " ", "X", " ", " "},
-                {"X", " ", " ", " ", " ", "X", " ", "X", " ", " "},
-                {"X", " ", " ", " ", " ", "X", " ", "X", " ", " "},
-                {" ", " ", " ", " ", " ", "X", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", "X", " ", " ", " ", " "}
-        };
-
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                System.out.print("|" + grid[i][j]);
-            }
-            System.out.println("|");
-        }
-    }
-
-    public int[][] placeShips() {
+    public int[][] placeVessels() {
         int[][] grid = {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -62,9 +40,9 @@ public class BattleShips {
             vertical = input.hasNext("V");
             for (int i = 0; i < size; i++) {
                 if (horizontal) {
-                    grid[X][Y + i] = Integer.parseInt("1");
+                    grid[X][Y + i] = 1;
                 } else if (vertical) {
-                    grid[X + i][Y] = Integer.parseInt("1");
+                    grid[X + i][Y] = 1;
                 }
             }
         }
@@ -72,7 +50,7 @@ public class BattleShips {
         return grid;
     }
 
-    private static void printArray(int[][] grid) {
+    public void printArray(int[][] grid) {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 System.out.print(grid[i][j] + "|");
