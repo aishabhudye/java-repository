@@ -13,7 +13,19 @@ public class Vessel {
         this.orientation = orientation;
     }
 
-    public boolean fitsOnBoard(){
+    public String getName() {
+        return name;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public boolean fitsOnBoard(Board board){
         return false;
     }
 
