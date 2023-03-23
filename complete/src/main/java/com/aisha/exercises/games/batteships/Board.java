@@ -5,6 +5,7 @@ public class Board {
     private int width;
     private  String[][] grid = {};
 
+
     public int getLength() {
         return length;
     }
@@ -17,13 +18,21 @@ public class Board {
         return grid;
     }
 
-    public Board(int length, int width, String[][] grid) {
+
+    public Board(int length, int width) {
         this.length = length;
         this.width = width;
-        this.grid = grid;
+    }
+    public String[][] createEmptyBoard(){
+        grid = new String[length][width];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                grid[i][j] = " ";
+                System.out.print(grid[i][j] +"|");
+            }
+            System.out.println(" ");
+        }
+        return grid;
     }
 
-    public void putVesselOnBoard(){
-
-    }
 }

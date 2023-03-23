@@ -8,7 +8,6 @@ class VesselTest {
 
     @Test
     void scenario1_vessel_fits_on_board_horizontally() {
-
     }
 
     @Test

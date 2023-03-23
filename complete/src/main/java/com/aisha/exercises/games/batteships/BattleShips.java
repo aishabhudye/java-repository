@@ -21,6 +21,12 @@ public class BattleShips {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+        //promptForVessels(grid);
+        printArray(grid);
+        return grid;
+    }
+
+    private static void promptForVessels(int[][] grid) {
         int X;
         int Y;
         int size;
@@ -46,8 +52,6 @@ public class BattleShips {
                 }
             }
         }
-        printArray(grid);
-        return grid;
     }
 
     public void printArray(int[][] grid) {
