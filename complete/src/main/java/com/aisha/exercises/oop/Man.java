@@ -9,8 +9,8 @@ public class Man extends Animal {
         this.twoLimbsAsLegs = true;
     }
 
-    public boolean isObese(float height, float weight) {
-        float BMI = weight / height;
+    public boolean isObese() {
+        float BMI = getMass() / getHeight();
         if (BMI >= 30) {
             System.out.println("Obese");
             return true;
@@ -21,8 +21,8 @@ public class Man extends Animal {
 
     }
 
-    public boolean hasHighDiabetesRisk(float height, float weight) {
-        float BMI = weight / height;
+    public boolean hasHighDiabetesRisk() {
+        float BMI = getMass() / getHeight();
         if (BMI >= 30) {
             System.out.println("High Diabetes Risk");
             return true;

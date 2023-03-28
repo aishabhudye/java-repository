@@ -26,12 +26,28 @@ public class Vessel {
         return size;
     }
 
+    public int getxStartCoordinate() {
+        return xStartCoordinate;
+    }
+
+    public int getyStartCoordinate() {
+        return yStartCoordinate;
+    }
+
     public Orientation getOrientation() {
         return orientation;
     }
 
-    public boolean fitsOnBoard(Board board){
-        return false;
+    public boolean fitsOnBoard(Board board) {
+        int endX = xStartCoordinate + size;
+        int endY = yStartCoordinate + size;
+        boolean fitsInLength = 0 <= endX && endX <= board.getLength();
+        boolean fitsInWidth = 0 <= endY && endY <= board.getWidth();
+        if (fitsInLength && fitsInWidth){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
