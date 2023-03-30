@@ -2,6 +2,7 @@ package com.aisha.exercises.games.batteships;
 
 
 public class Vessel {
+    private VesselType vesselType;
     private String name;
     private int size;
     private int xStartCoordinate;
@@ -10,6 +11,13 @@ public class Vessel {
     public Vessel(String name, int size, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
         this.name = name;
         this.size = size;
+        this.xStartCoordinate = xStartCoordinate;
+        this.yStartCoordinate = yStartCoordinate;
+        this.orientation = orientation;
+    }
+
+    public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
+        this.vesselType = vesselType;
         this.xStartCoordinate = xStartCoordinate;
         this.yStartCoordinate = yStartCoordinate;
         this.orientation = orientation;
@@ -26,11 +34,15 @@ public class Vessel {
         return size;
     }
 
-    public int getxStartCoordinate() {
+    public VesselType getVesselType(){
+        return vesselType;
+    }
+
+    public int getXStartCoordinate() {
         return xStartCoordinate;
     }
 
-    public int getyStartCoordinate() {
+    public int getYStartCoordinate() {
         return yStartCoordinate;
     }
 
@@ -39,8 +51,8 @@ public class Vessel {
     }
 
     public boolean fitsOnBoard(Board board) {
-        int endX = xStartCoordinate + size;
-        int endY = yStartCoordinate + size;
+        int endX = xStartCoordinate + vesselType.getSize();
+        int endY = yStartCoordinate + vesselType.getSize();
         boolean fitsInLength = 0 <= endX && endX <= board.getLength();
         boolean fitsInWidth = 0 <= endY && endY <= board.getWidth();
         if (fitsInLength && fitsInWidth){
