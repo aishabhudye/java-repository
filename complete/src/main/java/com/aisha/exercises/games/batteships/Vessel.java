@@ -1,12 +1,24 @@
 package com.aisha.exercises.games.batteships;
 
 
+import java.util.List;
+
 public class Vessel {
     private VesselType vesselType;
     private String name;
     private int size;
     private int xStartCoordinate;
     private int yStartCoordinate;
+    private List<Cells>cellsList;
+
+
+    public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, List<Cells> cellsList, Orientation orientation) {
+        this.vesselType = vesselType;
+        this.xStartCoordinate = xStartCoordinate;
+        this.yStartCoordinate = yStartCoordinate;
+        this.cellsList = cellsList;
+        this.orientation = orientation;
+    }
 
     public Vessel(String name, int size, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
         this.name = name;
@@ -49,6 +61,13 @@ public class Vessel {
     public Orientation getOrientation() {
         return orientation;
     }
+
+    public List<Cells> getCellsList() {
+        return cellsList;
+    }
+
+
+
 
     public boolean fitsOnBoard(Board board) {
         int endX = xStartCoordinate + vesselType.getSize();

@@ -1,10 +1,20 @@
 package com.aisha.exercises.games.batteships;
 
+import java.util.List;
+
 public class Board {
     private int length;
     private int width;
     private  String[][] grid = {};
+    private List<Vessel>vesselList;
 
+
+    public Board(int length, int width, String[][] grid, List<Vessel> vesselList) {
+        this.length = length;
+        this.width = width;
+        this.grid = grid;
+        this.vesselList = vesselList;
+    }
 
     public int getLength() {
         return length;
@@ -16,6 +26,10 @@ public class Board {
 
     public String[][] getGrid() {
         return grid;
+    }
+
+    public List<Vessel> getVesselList() {
+        return vesselList;
     }
 
 
