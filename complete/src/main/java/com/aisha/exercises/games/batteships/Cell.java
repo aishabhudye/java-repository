@@ -1,6 +1,6 @@
 package com.aisha.exercises.games.batteships;
 
-public class Cells {
+public class Cell {
     private int XCoordinate;
     private int YCoordinate;
 
@@ -12,7 +12,7 @@ public class Cells {
         return YCoordinate;
     }
 
-    public Cells(int XCoordinate, int YCoordinate) {
+    public Cell(int XCoordinate, int YCoordinate) {
         this.XCoordinate = XCoordinate;
         this.YCoordinate = YCoordinate;
     }

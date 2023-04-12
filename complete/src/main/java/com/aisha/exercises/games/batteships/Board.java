@@ -1,12 +1,14 @@
 package com.aisha.exercises.games.batteships;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Board {
     private int length;
     private int width;
-    private  String[][] grid = {};
-    private List<Vessel>vesselList;
+    private String[][] grid = {};
+    private List<Vessel> vesselList = new ArrayList<>();
 
 
     public Board(int length, int width, String[][] grid, List<Vessel> vesselList) {
@@ -37,16 +39,23 @@ public class Board {
         this.length = length;
         this.width = width;
     }
-    public String[][] createEmptyBoard(){
+
+    public String[][] createEmptyBoard() {
         grid = new String[length][width];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 grid[i][j] = " ";
-                System.out.print(grid[i][j] +"|");
+                System.out.print(grid[i][j] + "|");
             }
             System.out.println(" ");
         }
         return grid;
+    }
+
+    public List<Vessel> updateVesselList(Vessel vessel) {
+        vesselList.add(vessel);
+        return vesselList;
+
     }
 
 }

@@ -2,11 +2,15 @@ package com.aisha.exercises.games.batteships;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class VesselTest {
     public static final Board board = new Board(10,10);
+
 
     @Test
     void scenario1_vessel_fits_on_top_right_board_horizontally() {
@@ -115,6 +119,23 @@ class VesselTest {
     void scenario18_vessel_does_fit_in_the_centre_of_board_vertically() {
         Vessel vessel = new Vessel(VesselType.SUBMARINE,5,5,Orientation.VERTICAL);
         assertTrue(vessel.fitsOnBoard(board));
+    }
+
+    @Test
+    void add5VesselsToAList(){
+        List<Cell>cellList = null;
+        Vessel vessel = new Vessel(VesselType.CORVETTE,1,1,cellList,Orientation.HORIZONTAL);
+        List<Vessel>vessels = board.updateVesselList(vessel);
+        Vessel vessel2 = new Vessel(VesselType.CRUISER,1,2,cellList,Orientation.HORIZONTAL);
+        vessels = board.updateVesselList(vessel2);
+        Vessel vessel3 = new Vessel(VesselType.SUBMARINE,1,3,cellList,Orientation.HORIZONTAL);
+        vessels = board.updateVesselList(vessel3);
+        Vessel vessel4 = new Vessel(VesselType.DESTROYER,1,4,cellList,Orientation.HORIZONTAL);
+        vessels = board.updateVesselList(vessel4);
+        Vessel vessel5 = new Vessel(VesselType.CARRIER,1,5,cellList,Orientation.HORIZONTAL);
+        vessels = board.updateVesselList(vessel5);
+        assertEquals(vessels.size(),5);
+
     }
 
 }

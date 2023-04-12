@@ -9,14 +9,14 @@ public class Vessel {
     private int size;
     private int xStartCoordinate;
     private int yStartCoordinate;
-    private List<Cells>cellsList;
+    private List<Cell> cellList;
 
 
-    public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, List<Cells> cellsList, Orientation orientation) {
+    public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, List<Cell> cellList, Orientation orientation) {
         this.vesselType = vesselType;
         this.xStartCoordinate = xStartCoordinate;
         this.yStartCoordinate = yStartCoordinate;
-        this.cellsList = cellsList;
+        this.cellList = cellList;
         this.orientation = orientation;
     }
 
@@ -46,7 +46,7 @@ public class Vessel {
         return size;
     }
 
-    public VesselType getVesselType(){
+    public VesselType getVesselType() {
         return vesselType;
     }
 
@@ -62,11 +62,9 @@ public class Vessel {
         return orientation;
     }
 
-    public List<Cells> getCellsList() {
-        return cellsList;
+    public List<Cell> getCellsList() {
+        return cellList;
     }
-
-
 
 
     public boolean fitsOnBoard(Board board) {
@@ -74,7 +72,7 @@ public class Vessel {
         int endY = yStartCoordinate + vesselType.getSize();
         boolean fitsInLength = 0 <= endX && endX <= board.getLength();
         boolean fitsInWidth = 0 <= endY && endY <= board.getWidth();
-        if (fitsInLength && fitsInWidth){
+        if (fitsInLength && fitsInWidth) {
             return true;
         } else {
             return false;
