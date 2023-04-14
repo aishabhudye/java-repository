@@ -79,4 +79,12 @@ public class Vessel {
         }
     }
 
+    public int buildCells(){
+        Cell cell = null;
+        for(int i = 0 ;i < vesselType.getSize(); i++){
+            cellList.add(cell);
+        }
+        return cellList.size();
+    }
+
 }

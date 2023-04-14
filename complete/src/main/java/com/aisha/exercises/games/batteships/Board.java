@@ -1,7 +1,6 @@
 package com.aisha.exercises.games.batteships;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Board {
@@ -52,10 +51,9 @@ public class Board {
         return grid;
     }
 
-    public List<Vessel> updateVesselList(Vessel vessel) {
+    public int updateVesselList(Vessel vessel) {
         vesselList.add(vessel);
-        return vesselList;
-
+        return vesselList.size();
     }
 
 }
