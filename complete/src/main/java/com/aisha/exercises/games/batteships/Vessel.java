@@ -1,61 +1,23 @@
 package com.aisha.exercises.games.batteships;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Vessel {
     private VesselType vesselType;
-    private String name;
-    private int size;
-    private int xStartCoordinate;
-    private int yStartCoordinate;
-    private List<Cell> cellList;
-
-
-    public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, List<Cell> cellList, Orientation orientation) {
-        this.vesselType = vesselType;
-        this.xStartCoordinate = xStartCoordinate;
-        this.yStartCoordinate = yStartCoordinate;
-        this.cellList = cellList;
-        this.orientation = orientation;
-    }
-
-    public Vessel(String name, int size, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
-        this.name = name;
-        this.size = size;
-        this.xStartCoordinate = xStartCoordinate;
-        this.yStartCoordinate = yStartCoordinate;
-        this.orientation = orientation;
-    }
+    private List<Cell> cellList = new LinkedList<>();
 
     public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
         this.vesselType = vesselType;
-        this.xStartCoordinate = xStartCoordinate;
-        this.yStartCoordinate = yStartCoordinate;
         this.orientation = orientation;
+        updateStartCell(xStartCoordinate, yStartCoordinate);
     }
 
     private Orientation orientation;
 
-
-    public String getName() {
-        return name;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
     public VesselType getVesselType() {
         return vesselType;
-    }
-
-    public int getXStartCoordinate() {
-        return xStartCoordinate;
-    }
-
-    public int getYStartCoordinate() {
-        return yStartCoordinate;
     }
 
     public Orientation getOrientation() {
@@ -68,8 +30,8 @@ public class Vessel {
 
 
     public boolean fitsOnBoard(Board board) {
-        int endX = xStartCoordinate + vesselType.getSize();
-        int endY = yStartCoordinate + vesselType.getSize();
+        int endX = this.cellList.get(0).getXStartCoordinate() + vesselType.getSize();
+        int endY = this.cellList.get(0).getYStartCoordinate() + vesselType.getSize();
         boolean fitsInLength = 0 <= endX && endX <= board.getLength();
         boolean fitsInWidth = 0 <= endY && endY <= board.getWidth();
         if (fitsInLength && fitsInWidth) {
@@ -79,10 +41,21 @@ public class Vessel {
         }
     }
 
-    public int buildCells(){
-        Cell cell = null;
-        for(int i = 0 ;i < vesselType.getSize(); i++){
-            cellList.add(cell);
+    public int updateStartCell(int xStartCoordinate, int yStartCoordinate){
+        Cell startCell = new Cell(xStartCoordinate, yStartCoordinate);
+        cellList.add(0, startCell);
+        return cellList.size();
+    }
+
+    public int updateCellList() {
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+        int index = 0;
+        Cell cell = new Cell(xCoordinate,yCoordinate);
+        for (int i = 0; i < vesselType.getSize(); i++) {
+            if(i!=0){
+                cellList.add(index + 1,cell);
+            }
         }
         return cellList.size();
     }

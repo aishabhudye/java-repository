@@ -1,19 +1,20 @@
 package com.aisha.exercises.games.batteships;
 
 public class Cell {
-    private int XCoordinate;
-    private int YCoordinate;
 
-    public int getXCoordinate() {
-        return XCoordinate;
+    private int xStartCoordinate;
+    private int yStartCoordinate;
+
+    public int getXStartCoordinate() {
+        return xStartCoordinate;
     }
 
-    public int getYCoordinate() {
-        return YCoordinate;
+    public int getYStartCoordinate() {
+        return yStartCoordinate;
     }
 
-    public Cell(int XCoordinate, int YCoordinate) {
-        this.XCoordinate = XCoordinate;
-        this.YCoordinate = YCoordinate;
+    public Cell(int xStartCoordinate, int yStartCoordinate) {
+        this.xStartCoordinate = xStartCoordinate;
+        this.yStartCoordinate = yStartCoordinate;
     }
 }

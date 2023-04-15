@@ -3,7 +3,6 @@ package com.aisha.exercises.games.batteships;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -125,30 +124,29 @@ class VesselTest {
     @Test
     void test_5_vessels_can_be_added_to_board() {
         List<Cell> emptyCellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.CORVETTE, 1, 1, emptyCellList, Orientation.HORIZONTAL);
+        Vessel vessel = new Vessel(VesselType.CORVETTE, 1, 1, Orientation.HORIZONTAL);
         board.updateVesselList(vessel);
-        Vessel vessel2 = new Vessel(VesselType.CRUISER, 1, 2, emptyCellList, Orientation.HORIZONTAL);
+        Vessel vessel2 = new Vessel(VesselType.CRUISER, 1, 2, Orientation.HORIZONTAL);
         board.updateVesselList(vessel2);
-        Vessel vessel3 = new Vessel(VesselType.SUBMARINE, 1, 3, emptyCellList, Orientation.HORIZONTAL);
+        Vessel vessel3 = new Vessel(VesselType.SUBMARINE, 1, 3, Orientation.HORIZONTAL);
         board.updateVesselList(vessel3);
-        Vessel vessel4 = new Vessel(VesselType.DESTROYER, 1, 4, emptyCellList, Orientation.HORIZONTAL);
+        Vessel vessel4 = new Vessel(VesselType.DESTROYER, 1, 4, Orientation.HORIZONTAL);
         board.updateVesselList(vessel4);
-        Vessel vessel5 = new Vessel(VesselType.CARRIER, 1, 5, emptyCellList, Orientation.HORIZONTAL);
+        Vessel vessel5 = new Vessel(VesselType.CARRIER, 1, 5, Orientation.HORIZONTAL);
         assertEquals(board.updateVesselList(vessel5), 5);
     }
 
     @Test
-    void test_cell_list(){
+    void test_cells_of_horizontal_cruiser() {
         List<Cell> cellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.CRUISER,2,2, cellList,Orientation.HORIZONTAL);
-        assertEquals(vessel.buildCells(),5);
+        Vessel vessel = new Vessel(VesselType.CRUISER, 2, 2, Orientation.HORIZONTAL);
+        assertEquals(vessel.updateCellList(),4);
     }
 
     @Test
-    void test_cell_list2(){
+    void test_cells_of_vertical_destroyer() {
         List<Cell> cellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.DESTROYER,1,1,cellList,Orientation.VERTICAL);
-        assertEquals(vessel.buildCells(),4);
+        Vessel vessel = new Vessel(VesselType.DESTROYER, 1, 1, Orientation.VERTICAL);
     }
 
 }
