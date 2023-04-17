@@ -41,23 +41,29 @@ public class Vessel {
         }
     }
 
-    public int updateStartCell(int xStartCoordinate, int yStartCoordinate){
-        Cell startCell = new Cell(xStartCoordinate, yStartCoordinate);
-        cellList.add(0, startCell);
-        return cellList.size();
-    }
-
-    public int updateCellList() {
-        int xCoordinate = 0;
-        int yCoordinate = 0;
+    public int updateStartCell(int xStartCoordinate, int yStartCoordinate) {
+        Cell cell = new Cell(xStartCoordinate, yStartCoordinate);
         int index = 0;
-        Cell cell = new Cell(xCoordinate,yCoordinate);
+        cellList.add(index, cell);
+        Orientation orientation = getOrientation();
+        int newCoordinate = 0;
         for (int i = 0; i < vesselType.getSize(); i++) {
-            if(i!=0){
-                cellList.add(index + 1,cell);
+            if (i >= 1) {
+                if (orientation.equals(Orientation.HORIZONTAL)) {
+                    newCoordinate = cell.getXStartCoordinate() + i;
+                    cell = new Cell(newCoordinate, yStartCoordinate);
+                    index = index + 1;
+                    cellList.add(cell);
+                } else if (orientation.equals(Orientation.VERTICAL)) {
+                    newCoordinate = cell.getYStartCoordinate() + i;
+                    cell = new Cell(xStartCoordinate, newCoordinate);
+                    index = index + 1;
+                    cellList.add(cell);
+                }
             }
         }
-        return cellList.size();
+        return newCoordinate;
     }
+
 
 }

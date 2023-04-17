@@ -138,15 +138,9 @@ class VesselTest {
 
     @Test
     void test_cells_of_horizontal_cruiser() {
-        List<Cell> cellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.CRUISER, 2, 2, Orientation.HORIZONTAL);
-        assertEquals(vessel.updateCellList(),4);
+        Vessel vessel = new Vessel(VesselType.SUBMARINE,1,1,Orientation.HORIZONTAL);
+        assertEquals(vessel.updateStartCell(1,1),4);
     }
 
-    @Test
-    void test_cells_of_vertical_destroyer() {
-        List<Cell> cellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.DESTROYER, 1, 1, Orientation.VERTICAL);
-    }
 
 }
