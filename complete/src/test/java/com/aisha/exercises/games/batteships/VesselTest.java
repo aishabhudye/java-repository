@@ -138,9 +138,20 @@ class VesselTest {
 
     @Test
     void test_cells_of_horizontal_cruiser() {
-        Vessel vessel = new Vessel(VesselType.SUBMARINE,1,1,Orientation.HORIZONTAL);
-        assertEquals(vessel.updateStartCell(1,1),4);
+        Vessel vessel = new Vessel(VesselType.SUBMARINE, 1, 1, Orientation.HORIZONTAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(3, cellList.get(VesselType.SUBMARINE.getSize() - 1).getXCoordinate());
+        assertEquals(1, cellList.get(VesselType.SUBMARINE.getSize() - 1).getYCoordinate());
     }
+
+    @Test
+    void test_cells_of_vertical_cruiser() {
+        Vessel vessel = new Vessel(VesselType.SUBMARINE, 2, 3, Orientation.VERTICAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(2, cellList.get(VesselType.SUBMARINE.getSize() - 1).getXCoordinate());
+        assertEquals(5, cellList.get(VesselType.SUBMARINE.getSize() - 1).getYCoordinate());
+    }
+
 
 
 }

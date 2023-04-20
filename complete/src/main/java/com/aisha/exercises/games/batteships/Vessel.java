@@ -11,7 +11,7 @@ public class Vessel {
     public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
         this.vesselType = vesselType;
         this.orientation = orientation;
-        updateStartCell(xStartCoordinate, yStartCoordinate);
+        updateCellList(xStartCoordinate, yStartCoordinate);
     }
 
     private Orientation orientation;
@@ -24,14 +24,14 @@ public class Vessel {
         return orientation;
     }
 
-    public List<Cell> getCellsList() {
+    public List<Cell> getCellList() {
         return cellList;
     }
 
 
     public boolean fitsOnBoard(Board board) {
-        int endX = this.cellList.get(0).getXStartCoordinate() + vesselType.getSize();
-        int endY = this.cellList.get(0).getYStartCoordinate() + vesselType.getSize();
+        int endX = this.cellList.get(0).getXCoordinate() + vesselType.getSize();
+        int endY = this.cellList.get(0).getYCoordinate() + vesselType.getSize();
         boolean fitsInLength = 0 <= endX && endX <= board.getLength();
         boolean fitsInWidth = 0 <= endY && endY <= board.getWidth();
         if (fitsInLength && fitsInWidth) {
@@ -41,28 +41,21 @@ public class Vessel {
         }
     }
 
-    public int updateStartCell(int xStartCoordinate, int yStartCoordinate) {
-        Cell cell = new Cell(xStartCoordinate, yStartCoordinate);
-        int index = 0;
-        cellList.add(index, cell);
+    public void updateCellList(int xCoordinate, int yCoordinate) {
+        Cell cell = new Cell(xCoordinate, yCoordinate);
         Orientation orientation = getOrientation();
-        int newCoordinate = 0;
         for (int i = 0; i < vesselType.getSize(); i++) {
-            if (i >= 1) {
-                if (orientation.equals(Orientation.HORIZONTAL)) {
-                    newCoordinate = cell.getXStartCoordinate() + i;
-                    cell = new Cell(newCoordinate, yStartCoordinate);
-                    index = index + 1;
-                    cellList.add(cell);
-                } else if (orientation.equals(Orientation.VERTICAL)) {
-                    newCoordinate = cell.getYStartCoordinate() + i;
-                    cell = new Cell(xStartCoordinate, newCoordinate);
-                    index = index + 1;
-                    cellList.add(cell);
-                }
+            if (orientation.equals(Orientation.HORIZONTAL)) {
+                int newXCoordinate = cell.getXCoordinate() + i;
+                Cell newCell = new Cell(newXCoordinate, yCoordinate);
+                cellList.add(newCell);
+            } else if (orientation.equals(Orientation.VERTICAL)) {
+                int newYCoordinate = cell.getYCoordinate() + i;
+                Cell newCell = new Cell(xCoordinate, newYCoordinate);
+                cellList.add(newCell);
             }
+
         }
-        return newCoordinate;
     }
 
 
