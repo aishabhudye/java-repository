@@ -137,7 +137,7 @@ class VesselTest {
     }
 
     @Test
-    void test_cells_of_horizontal_cruiser() {
+    void test_cells_of_submarine_horizontal_cruiser() {
         Vessel vessel = new Vessel(VesselType.SUBMARINE, 1, 1, Orientation.HORIZONTAL);
         List<Cell> cellList = vessel.getCellList();
         assertEquals(3, cellList.get(VesselType.SUBMARINE.getSize() - 1).getXCoordinate());
@@ -145,12 +145,77 @@ class VesselTest {
     }
 
     @Test
-    void test_cells_of_vertical_cruiser() {
+    void test_cells_of_submarine_vertical_cruiser() {
         Vessel vessel = new Vessel(VesselType.SUBMARINE, 2, 3, Orientation.VERTICAL);
         List<Cell> cellList = vessel.getCellList();
         assertEquals(2, cellList.get(VesselType.SUBMARINE.getSize() - 1).getXCoordinate());
         assertEquals(5, cellList.get(VesselType.SUBMARINE.getSize() - 1).getYCoordinate());
     }
+
+    @Test
+    void test_cells_of_corvette_horizontal_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CORVETTE, 3, 3, Orientation.HORIZONTAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(4, cellList.get(VesselType.CORVETTE.getSize() - 1).getXCoordinate());
+        assertEquals(3, cellList.get(VesselType.CORVETTE.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_corvette_vertical_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CORVETTE, 3, 3, Orientation.VERTICAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(3, cellList.get(VesselType.CORVETTE.getSize() - 1).getXCoordinate());
+        assertEquals(4, cellList.get(VesselType.CORVETTE.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_cruiser_horizontal_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CRUISER, 3, 4, Orientation.HORIZONTAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(7, cellList.get(VesselType.CRUISER.getSize() - 1).getXCoordinate());
+        assertEquals(4, cellList.get(VesselType.CRUISER.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_cruiser_vertical_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CRUISER, 3, 4, Orientation.VERTICAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(3, cellList.get(VesselType.CRUISER.getSize() - 1).getXCoordinate());
+        assertEquals(8, cellList.get(VesselType.CRUISER.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_destroyer_horizontal_cruiser() {
+        Vessel vessel = new Vessel(VesselType.DESTROYER, 4, 4, Orientation.HORIZONTAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(7, cellList.get(VesselType.DESTROYER.getSize() - 1).getXCoordinate());
+        assertEquals(4, cellList.get(VesselType.DESTROYER.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_destroyer_vertical_cruiser() {
+        Vessel vessel = new Vessel(VesselType.DESTROYER, 4, 4, Orientation.VERTICAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(4, cellList.get(VesselType.DESTROYER.getSize() - 1).getXCoordinate());
+        assertEquals(7, cellList.get(VesselType.DESTROYER.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_carrier_horizontal_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(8, cellList.get(VesselType.CARRIER.getSize() - 1).getXCoordinate());
+        assertEquals(4, cellList.get(VesselType.CARRIER.getSize() - 1).getYCoordinate());
+    }
+
+    @Test
+    void test_cells_of_carrier_vertical_cruiser() {
+        Vessel vessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
+        List<Cell> cellList = vessel.getCellList();
+        assertEquals(3, cellList.get(VesselType.CARRIER.getSize() - 1).getXCoordinate());
+        assertEquals(9, cellList.get(VesselType.CARRIER.getSize() - 1).getYCoordinate());
+    }
+
 
 
 
