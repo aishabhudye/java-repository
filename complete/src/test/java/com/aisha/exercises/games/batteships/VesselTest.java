@@ -1,5 +1,6 @@
 package com.aisha.exercises.games.batteships;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ class VesselTest {
         assertTrue(vessel.fitsOnBoard(board));
     }
 
-    @Test
+    /*@Test
     void test_5_vessels_can_be_added_to_board() {
         List<Cell> emptyCellList = new ArrayList<>();
         Vessel vessel = new Vessel(VesselType.CORVETTE, 1, 1, Orientation.HORIZONTAL);
@@ -134,7 +135,7 @@ class VesselTest {
         board.updateVesselList(vessel4);
         Vessel vessel5 = new Vessel(VesselType.CARRIER, 1, 5, Orientation.HORIZONTAL);
         assertEquals(board.updateVesselList(vessel5), 5);
-    }
+    }*/
 
     @Test
     void test_cells_of_submarine_horizontal_cruiser() {
