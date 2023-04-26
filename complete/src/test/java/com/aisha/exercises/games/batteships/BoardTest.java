@@ -26,9 +26,9 @@ class BoardTest {
     @Test
     void updateVesselList2() {
         //Create a carrierVessel
-        Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 3, 4, Orientation.VERTICAL);
+        Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 4, 4, Orientation.VERTICAL);
         //Create a carrierVessel
         Vessel carrierVessel2 = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertFalse(boardTestTarget.updateVesselList(carrierVessel,carrierVessel2));
+        assertTrue(boardTestTarget.updateVesselList(carrierVessel,carrierVessel2));
     }
 }

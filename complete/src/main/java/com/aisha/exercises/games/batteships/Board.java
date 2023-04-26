@@ -51,23 +51,23 @@ public class Board {
         return grid;
     }
 
-    public boolean updateVesselList(Vessel vessel,Vessel vessel1) {
+    public boolean updateVesselList(Vessel previousVessel,Vessel currentVessel) {
         //perform check to see if vessel can be added to board
         //if so, add it to the vessel list and return true
         //if not, just return false, without adding it to the list
-        vesselList.add(vessel);
-        List<Cell> cellList = vessel.getCellList();
-        List<Cell> cellList1 = vessel1.getCellList();
-        boolean decision = false;
-        for(Cell cell:cellList){
-            for(Cell cell1:cellList1){
+        vesselList.add(previousVessel);
+        List<Cell> previousVesselCellList = previousVessel.getCellList();
+        List<Cell> currentVesselCellList = currentVessel.getCellList();
+        boolean isValidVessel = false;
+        for(Cell cell:previousVesselCellList){
+            for(Cell cell1:currentVesselCellList){
                 if((cell.getXCoordinate()!=cell1.getXCoordinate()&&cell.getYCoordinate()!=cell1.getYCoordinate())){
-                    vesselList.add(vessel1);
-                    decision = true;
+                    vesselList.add(currentVessel);
+                    isValidVessel = true;
                 }
             }
         }
-        return decision;
+        return isValidVessel;
     }
 
 
