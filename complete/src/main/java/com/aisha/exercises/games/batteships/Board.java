@@ -2,6 +2,7 @@ package com.aisha.exercises.games.batteships;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class Board {
     private int length;
@@ -10,11 +11,10 @@ public class Board {
     private List<Vessel> vesselList = new ArrayList<>();
 
 
-    public Board(int length, int width, String[][] grid, List<Vessel> vesselList) {
+    public Board(int length, int width, String[][] grid) {
         this.length = length;
         this.width = width;
         this.grid = grid;
-        this.vesselList = vesselList;
     }
 
     public int getLength() {
@@ -51,23 +51,32 @@ public class Board {
         return grid;
     }
 
-    public boolean updateVesselList(Vessel previousVessel,Vessel currentVessel) {
-        //perform check to see if vessel can be added to board
-        //if so, add it to the vessel list and return true
-        //if not, just return false, without adding it to the list
-        vesselList.add(previousVessel);
-        List<Cell> previousVesselCellList = previousVessel.getCellList();
-        List<Cell> currentVesselCellList = currentVessel.getCellList();
-        boolean isValidVessel = false;
-        for(Cell cell:previousVesselCellList){
-            for(Cell cell1:currentVesselCellList){
-                if((cell.getXCoordinate()!=cell1.getXCoordinate()&&cell.getYCoordinate()!=cell1.getYCoordinate())){
-                    vesselList.add(currentVessel);
-                    isValidVessel = true;
+    public boolean updateVesselList(Vessel vessel) {
+
+        if (vesselList.size() == 0) {
+
+            vesselList.add(vessel);
+            return true;
+        } else {
+            boolean decision = false;
+            Vessel previousVessel = vesselList.get(0);
+            List<Cell> previousVesselCellList = previousVessel.getCellList();
+            List<Cell> currentVesselCellList = vessel.getCellList();
+            for (Cell currentCell : currentVesselCellList) {
+                for (Cell previousCell : previousVesselCellList) {
+                    if ((currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) || (vessel.getVesselType() != previousVessel.getVesselType())) {
+                        decision = true;
+                    }
                 }
             }
+            vesselList.add(vessel);
+            return decision;
+            //perform check to see if vessel can be added to board
+            //if so, add it to the vessel list and return true
+            //if not, just return false, without adding it to the list
         }
-        return isValidVessel;
+
+        //Remove once logic has been built for else
     }
 
 

@@ -10,25 +10,37 @@ class BoardTest {
     Board boardTestTarget;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         boardTestTarget = new Board(10, 10);
     }
 
     @Test
-    void updateVesselList() {
+    void first_vessel_should_be_added_successfully_to_list() {
         //Create a carrierVessel
         Vessel carrierVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        //Create a carrierVessel
-        Vessel carrierVessel2 = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertFalse(boardTestTarget.updateVesselList(carrierVessel,carrierVessel2));
+        assertTrue(boardTestTarget.updateVesselList(carrierVessel));
     }
 
     @Test
-    void updateVesselList2() {
+    void duplicate_vessels_are_not_allowed() {
         //Create a carrierVessel
-        Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 4, 4, Orientation.VERTICAL);
+        Vessel firstVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
         //Create a carrierVessel
-        Vessel carrierVessel2 = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertTrue(boardTestTarget.updateVesselList(carrierVessel,carrierVessel2));
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
     }
+
+    @Test
+    void vessels_are_allowed() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
+        assertTrue(boardTestTarget.updateVesselList(secondVessel));
+    }
+
 }
