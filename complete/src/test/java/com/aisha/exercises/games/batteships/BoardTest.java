@@ -43,4 +43,73 @@ class BoardTest {
         assertTrue(boardTestTarget.updateVesselList(secondVessel));
     }
 
+    @Test
+    void vessels_are_not_allowed_same_coordinates() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 5, 6, Orientation.VERTICAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+    @Test
+    void vessels_are_not_allowed_same_type() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.VERTICAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+    @Test
+    void duplicate_vessels_are_not_allowed_horizontal() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+    @Test
+    void vessels_are_allowed_horizontal() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
+        assertTrue(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+    @Test
+    void vessels_are_not_allowed_same_coordinates_horizontal() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.CARRIER, 5, 6, Orientation.HORIZONTAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+    @Test
+    void vessels_are_not_allowed_same_type_horizontal() {
+        //Create a carrierVessel
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        //Create a carrierVessel
+        Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.HORIZONTAL);
+        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+    }
+
+
+
+
 }

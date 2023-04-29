@@ -64,11 +64,12 @@ public class Board {
             List<Cell> currentVesselCellList = vessel.getCellList();
             for (Cell currentCell : currentVesselCellList) {
                 for (Cell previousCell : previousVesselCellList) {
-                    if ((currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) || (vessel.getVesselType() != previousVessel.getVesselType())) {
+                    if ((currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) && (vessel.getVesselType() != previousVessel.getVesselType())) {
                         decision = true;
                     }
                 }
             }
+
             vesselList.add(vessel);
             return decision;
             //perform check to see if vessel can be added to board
@@ -78,6 +79,4 @@ public class Board {
 
         //Remove once logic has been built for else
     }
-
-
 }
