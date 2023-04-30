@@ -82,4 +82,38 @@ public class Board {
 
         //Remove once logic has been built for else
     }
+
+    public boolean updateVesselList1(Vessel vessel) {
+
+        if (vesselList.size() == 0) {
+            vesselList.add(vessel);
+            return true;
+        } else {
+            boolean allowedOnBoard = false;
+            for (int index = 0; index < vesselList.size(); index++) {
+                Vessel previousVessel = vesselList.get(index);
+                List<Cell> previousVesselCellList = previousVessel.getCellList();
+                List<Cell> currentVesselCellList = vessel.getCellList();
+                for (Cell currentCell : currentVesselCellList) {
+                    for (Cell previousCell : previousVesselCellList) {
+                        if (vessel.getVesselType() == previousVessel.getVesselType()) {
+                            allowedOnBoard = false;
+                        } else {
+                            if (currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) {
+                                allowedOnBoard = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            vesselList.add(vessel);
+            return allowedOnBoard;
+            //perform check to see if vessel can be added to board
+            //if so, add it to the vessel list and return true
+            //if not, just return false, without adding it to the list
+        }
+
+        //Remove once logic has been built for else
+    }
 }
