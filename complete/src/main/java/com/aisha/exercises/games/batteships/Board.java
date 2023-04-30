@@ -54,24 +54,27 @@ public class Board {
     public boolean updateVesselList(Vessel vessel) {
 
         if (vesselList.size() == 0) {
-
             vesselList.add(vessel);
             return true;
         } else {
-            boolean decision = false;
+            boolean allowedOnBoard = false;
             Vessel previousVessel = vesselList.get(0);
             List<Cell> previousVesselCellList = previousVessel.getCellList();
             List<Cell> currentVesselCellList = vessel.getCellList();
             for (Cell currentCell : currentVesselCellList) {
                 for (Cell previousCell : previousVesselCellList) {
-                    if ((currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) && (vessel.getVesselType() != previousVessel.getVesselType())) {
-                        decision = true;
+                    if (vessel.getVesselType() == previousVessel.getVesselType()) {
+                        allowedOnBoard = false;
+                    } else {
+                        if (currentCell.getXCoordinate() != previousCell.getXCoordinate() && currentCell.getYCoordinate() != previousCell.getYCoordinate()) {
+                            allowedOnBoard = true;
+                        }
                     }
                 }
             }
 
             vesselList.add(vessel);
-            return decision;
+            return allowedOnBoard;
             //perform check to see if vessel can be added to board
             //if so, add it to the vessel list and return true
             //if not, just return false, without adding it to the list

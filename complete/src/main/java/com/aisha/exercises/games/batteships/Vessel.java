@@ -54,7 +54,6 @@ public class Vessel {
                 Cell newCell = new Cell(xCoordinate, newYCoordinate);
                 cellList.add(newCell);
             }
-
         }
     }
 

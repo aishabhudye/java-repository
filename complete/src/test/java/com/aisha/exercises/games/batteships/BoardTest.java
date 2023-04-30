@@ -1,6 +1,7 @@
 package com.aisha.exercises.games.batteships;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +23,7 @@ class BoardTest {
     }
 
     @Test
-    void duplicate_vessels_are_not_allowed() {
+    void duplicate_vertical_vessels_are_not_allowed() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -44,7 +45,7 @@ class BoardTest {
     }
 
     @Test
-    void vessels_are_not_allowed_same_coordinates() {
+    void vessels_are_not_allowed_due_to_same_coordinates() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -55,7 +56,7 @@ class BoardTest {
     }
 
     @Test
-    void vessels_are_not_allowed_same_type() {
+    void vessels_are_not_allowed_due_to_same_type() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -66,7 +67,7 @@ class BoardTest {
     }
 
     @Test
-    void duplicate_vessels_are_not_allowed_horizontal() {
+    void duplicate_horizontal_vessels_are_not_allowed() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -77,7 +78,8 @@ class BoardTest {
     }
 
     @Test
-    void vessels_are_allowed_horizontal() {
+    @DisplayName("Horizontal vessels of different types without overlapping coordinates should be allowed")
+    void horizontal_vessels_are_allowed() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -88,7 +90,7 @@ class BoardTest {
     }
 
     @Test
-    void vessels_are_not_allowed_same_coordinates_horizontal() {
+    void different_vessel_types_are_not_allowed_due_to_same_coordinates() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -99,7 +101,7 @@ class BoardTest {
     }
 
     @Test
-    void vessels_are_not_allowed_same_type_horizontal() {
+    void same_vessel_types_are_not_allowed_despite_different_coordinates() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -108,6 +110,5 @@ class BoardTest {
         Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.HORIZONTAL);
         assertFalse(boardTestTarget.updateVesselList(secondVessel));
     }
-
 
 }
