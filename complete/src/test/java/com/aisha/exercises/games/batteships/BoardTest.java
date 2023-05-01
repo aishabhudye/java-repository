@@ -137,16 +137,46 @@ class BoardTest {
     @Test
     @DisplayName("three vessels of the same type of different coordinates added to board")
     void scenario11() {
-        //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
 
-        //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.SUBMARINE, 2, 3, Orientation.HORIZONTAL);
         assertFalse(boardTestTarget.updateVesselList(thirdVessel));
+    }
+
+    @Test
+    @DisplayName("two vessels of the same type of different coordinates added to board")
+    void scenario12() {
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        Vessel secondVessel = new Vessel(VesselType.CORVETTE, 7, 8, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(secondVessel);
+
+        Vessel thirdVessel = new Vessel(VesselType.CORVETTE, 2, 3, Orientation.HORIZONTAL);
+        assertFalse(boardTestTarget.updateVesselList(thirdVessel));
+    }
+
+    @Test
+    @DisplayName("five vessels of different types of different coordinates added to board")
+    void scenario13() {
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        Vessel secondVessel = new Vessel(VesselType.CORVETTE, 7, 8, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(secondVessel);
+
+        Vessel thirdVessel = new Vessel(VesselType.CARRIER, 2, 3, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(thirdVessel);
+
+        Vessel fourthVessel = new Vessel(VesselType.DESTROYER, 3, 5, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(fourthVessel);
+
+        Vessel fithVessel = new Vessel(VesselType.CRUISER, 1, 3, Orientation.HORIZONTAL);
+        assertTrue(boardTestTarget.updateVesselList(fithVessel));
     }
 
 }
