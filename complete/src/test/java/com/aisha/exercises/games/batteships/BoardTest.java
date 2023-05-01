@@ -124,14 +124,14 @@ class BoardTest {
     void scenario10() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
-        boardTestTarget.updateVesselList1(firstVessel);
+        boardTestTarget.updateVesselList(firstVessel);
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CORVETTE, 7, 8, Orientation.HORIZONTAL);
-        boardTestTarget.updateVesselList1(secondVessel);
+        boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.DESTROYER, 2, 3, Orientation.HORIZONTAL);
-        assertTrue(boardTestTarget.updateVesselList1(thirdVessel));
+        assertTrue(boardTestTarget.updateVesselList(thirdVessel));
     }
 
     @Test
@@ -139,14 +139,14 @@ class BoardTest {
     void scenario11() {
         //Create a carrierVessel
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
-        boardTestTarget.updateVesselList1(firstVessel);
+        boardTestTarget.updateVesselList(firstVessel);
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.HORIZONTAL);
-        boardTestTarget.updateVesselList1(secondVessel);
+        boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.SUBMARINE, 2, 3, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList1(thirdVessel));
+        assertFalse(boardTestTarget.updateVesselList(thirdVessel));
     }
 
 }
