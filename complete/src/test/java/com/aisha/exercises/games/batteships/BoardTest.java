@@ -161,7 +161,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("five vessels of different types of different coordinates added to board")
+    @DisplayName("horizontal five vessels of different types of different coordinates added to board")
     void scenario13() {
         Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(firstVessel);
@@ -176,6 +176,25 @@ class BoardTest {
         boardTestTarget.updateVesselList(fourthVessel);
 
         Vessel fithVessel = new Vessel(VesselType.CRUISER, 1, 3, Orientation.HORIZONTAL);
+        assertTrue(boardTestTarget.updateVesselList(fithVessel));
+    }
+
+    @Test
+    @DisplayName("vertical five vessels of different types of different coordinates added to board")
+    void scenario14() {
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(firstVessel);
+
+        Vessel secondVessel = new Vessel(VesselType.CORVETTE, 7, 8, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(secondVessel);
+
+        Vessel thirdVessel = new Vessel(VesselType.CARRIER, 2, 3, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(thirdVessel);
+
+        Vessel fourthVessel = new Vessel(VesselType.DESTROYER, 3, 5, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(fourthVessel);
+
+        Vessel fithVessel = new Vessel(VesselType.CRUISER, 1, 3, Orientation.VERTICAL);
         assertTrue(boardTestTarget.updateVesselList(fithVessel));
     }
 
