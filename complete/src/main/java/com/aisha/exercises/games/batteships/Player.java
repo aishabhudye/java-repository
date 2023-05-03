@@ -20,7 +20,7 @@ public class Player {
                         previousCell = opponentBoardBombedCells.get(i);
                         int previousXCoordinate = previousCell.getXCoordinate();
                         int previousYCoordinate = previousCell.getYCoordinate();
-                        if (bombedCell.getXCoordinate()!= previousXCoordinate && bombedCell.getYCoordinate()!= previousYCoordinate) {
+                        if ((bombedCell.getXCoordinate()!= previousXCoordinate && bombedCell.getYCoordinate()!= previousYCoordinate ) || (bombedCell.getXCoordinate()!=previousXCoordinate && bombedCell.getYCoordinate() == previousYCoordinate) || (bombedCell.getXCoordinate() == previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate)){
                             allowedCell = true;
                         }
                     }
