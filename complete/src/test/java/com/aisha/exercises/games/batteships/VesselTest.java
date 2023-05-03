@@ -122,21 +122,6 @@ class VesselTest {
         assertTrue(vessel.fitsOnBoard(board));
     }
 
-    /*@Test
-    void test_5_vessels_can_be_added_to_board() {
-        List<Cell> emptyCellList = new ArrayList<>();
-        Vessel vessel = new Vessel(VesselType.CORVETTE, 1, 1, Orientation.HORIZONTAL);
-        board.updateVesselList(vessel);
-        Vessel vessel2 = new Vessel(VesselType.CRUISER, 1, 2, Orientation.HORIZONTAL);
-        board.updateVesselList(vessel2);
-        Vessel vessel3 = new Vessel(VesselType.SUBMARINE, 1, 3, Orientation.HORIZONTAL);
-        board.updateVesselList(vessel3);
-        Vessel vessel4 = new Vessel(VesselType.DESTROYER, 1, 4, Orientation.HORIZONTAL);
-        board.updateVesselList(vessel4);
-        Vessel vessel5 = new Vessel(VesselType.CARRIER, 1, 5, Orientation.HORIZONTAL);
-        assertEquals(board.updateVesselList(vessel5), 5);
-    }*/
-
     @Test
     void test_cells_of_submarine_horizontal_cruiser() {
         Vessel vessel = new Vessel(VesselType.SUBMARINE, 1, 1, Orientation.HORIZONTAL);

@@ -39,7 +39,7 @@ class BoardTest {
     @DisplayName("vessels are allowed")
     void scenario3() {
         //Create a carrierVessel
-        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        Vessel firstVessel = new Vessel(VesselType.SUBMARINE, 4, 6, Orientation.VERTICAL);
         boardTestTarget.updateVesselList(firstVessel);
 
         //Create a carrierVessel
