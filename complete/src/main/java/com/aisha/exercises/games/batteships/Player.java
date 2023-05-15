@@ -2,11 +2,24 @@ package com.aisha.exercises.games.batteships;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     private Board board;
-    private List<Cell> opponentBoardBombedCells = new ArrayList<>();
+    private List<Cell> opponentBoardBombedCells;
 
+    public Player(Board board, List<Cell> opponentBoardBombedCells) {
+        this.board = board;
+        this.opponentBoardBombedCells = opponentBoardBombedCells;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public List<Cell> getOpponentBoardBombedCells() {
+        return opponentBoardBombedCells;
+    }
 
     public boolean updateOpponentBoardBombedCells(Cell bombedCell, Board opponentBoard) {
         if (cellIsOnBoard(bombedCell, opponentBoard)) {
@@ -16,11 +29,11 @@ public class Player {
             } else {
                 boolean allowedCell = false;
                 for (int i = 0; i < opponentBoardBombedCells.size(); i++) {
-                    for (Cell previousCell: opponentBoardBombedCells) {
+                    for (Cell previousCell : opponentBoardBombedCells) {
                         previousCell = opponentBoardBombedCells.get(i);
                         int previousXCoordinate = previousCell.getXCoordinate();
                         int previousYCoordinate = previousCell.getYCoordinate();
-                        if ((bombedCell.getXCoordinate()!= previousXCoordinate && bombedCell.getYCoordinate()!= previousYCoordinate ) || (bombedCell.getXCoordinate()!=previousXCoordinate && bombedCell.getYCoordinate() == previousYCoordinate) || (bombedCell.getXCoordinate() == previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate)){
+                        if ((bombedCell.getXCoordinate() != previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate) || (bombedCell.getXCoordinate() != previousXCoordinate && bombedCell.getYCoordinate() == previousYCoordinate) || (bombedCell.getXCoordinate() == previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate)) {
                             allowedCell = true;
                         }
                     }
@@ -28,7 +41,7 @@ public class Player {
                 opponentBoardBombedCells.add(bombedCell);
                 return allowedCell;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -46,4 +59,5 @@ public class Player {
         //TODO: Build this up
 
     }
+
 }

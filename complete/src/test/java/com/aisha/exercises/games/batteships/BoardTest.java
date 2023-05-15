@@ -20,7 +20,7 @@ class BoardTest {
     void scenario1() {
         //Create a carrierVessel
         Vessel carrierVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertTrue(boardTestTarget.updateVesselList(carrierVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(carrierVessel));
     }
 
     @Test
@@ -32,7 +32,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -44,7 +44,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
-        assertTrue(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(2, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -56,7 +56,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 5, 6, Orientation.VERTICAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -68,7 +68,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.VERTICAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -80,7 +80,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -92,7 +92,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.HORIZONTAL);
-        assertTrue(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(2, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -104,7 +104,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.CARRIER, 5, 6, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -116,7 +116,7 @@ class BoardTest {
 
         //Create a carrierVessel
         Vessel secondVessel = new Vessel(VesselType.SUBMARINE, 7, 8, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList(secondVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(secondVessel));
     }
 
     @Test
@@ -131,7 +131,7 @@ class BoardTest {
         boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.DESTROYER, 2, 3, Orientation.HORIZONTAL);
-        assertTrue(boardTestTarget.updateVesselList(thirdVessel));
+        assertEquals(3, boardTestTarget.updateVesselList(thirdVessel));
     }
 
     @Test
@@ -144,7 +144,7 @@ class BoardTest {
         boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.SUBMARINE, 2, 3, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList(thirdVessel));
+        assertEquals(1, boardTestTarget.updateVesselList(thirdVessel));
     }
 
     @Test
@@ -157,7 +157,7 @@ class BoardTest {
         boardTestTarget.updateVesselList(secondVessel);
 
         Vessel thirdVessel = new Vessel(VesselType.CORVETTE, 2, 3, Orientation.HORIZONTAL);
-        assertFalse(boardTestTarget.updateVesselList(thirdVessel));
+        assertEquals(2, boardTestTarget.updateVesselList(thirdVessel));
     }
 
     @Test
@@ -176,7 +176,7 @@ class BoardTest {
         boardTestTarget.updateVesselList(fourthVessel);
 
         Vessel fithVessel = new Vessel(VesselType.CRUISER, 1, 3, Orientation.HORIZONTAL);
-        assertTrue(boardTestTarget.updateVesselList(fithVessel));
+        assertEquals(5, boardTestTarget.updateVesselList(fithVessel));
     }
 
     @Test
@@ -195,7 +195,7 @@ class BoardTest {
         boardTestTarget.updateVesselList(fourthVessel);
 
         Vessel fithVessel = new Vessel(VesselType.CRUISER, 1, 3, Orientation.VERTICAL);
-        assertTrue(boardTestTarget.updateVesselList(fithVessel));
+        assertEquals(5, boardTestTarget.updateVesselList(fithVessel));
     }
 
 }

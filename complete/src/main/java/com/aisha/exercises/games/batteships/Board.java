@@ -2,7 +2,6 @@ package com.aisha.exercises.games.batteships;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 public class Board {
     private int length;
@@ -51,11 +50,10 @@ public class Board {
         return grid;
     }
 
-    public boolean updateVesselList(Vessel vessel) {
+    public int updateVesselList(Vessel vessel) {
 
         if (vesselList.size() == 0) {
             vesselList.add(vessel);
-            return true;
         } else {
             boolean allowedOnBoard = false;
             for (int index = 0; index < vesselList.size(); index++) {
@@ -74,14 +72,18 @@ public class Board {
                     }
                 }
             }
+            if(allowedOnBoard){
+                vesselList.add(vessel);
+            }
 
-            vesselList.add(vessel);
-            return allowedOnBoard;
+
+
             //perform check to see if vessel can be added to board
             //if so, add it to the vessel list and return true
             //if not, just return false, without adding it to the list
         }
 
         //Remove once logic has been built for else
+        return vesselList.size();
     }
 }

@@ -3,13 +3,17 @@ package com.aisha.exercises.games.batteships;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
     public static final Board board = new Board(10,10);
+    public static final List<Cell> opponentBombedCells = new ArrayList<>();
 
-    Player playerTestTarget = new Player();
+    Player playerTestTarget = new Player(board,opponentBombedCells);
 
 
     @Test
