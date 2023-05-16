@@ -1,60 +1,53 @@
 package com.aisha.exercises.games.batteships;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInterface {
 
 
+    private Map<Integer, VesselType> numberToVesselTypeDictionary = new HashMap<Integer, VesselType>() {{
+        put(2, VesselType.CORVETTE);
+        put(3, VesselType.SUBMARINE);
+        put(4, VesselType.SUBMARINE);
+        put(5, VesselType.CRUISER);
+        put(6, VesselType.CARRIER);
+    }};
+
+    private Map<String, Orientation> letterToOrientationDictionary = new HashMap<String, Orientation>() {{
+        put("H", Orientation.HORIZONTAL);
+        put("V", Orientation.VERTICAL);
+    }};
+
+
     public void userInput() {
+        for (int i = 0; i < 2; i++) {
+            Board board = new Board(10, 10);
+            List<Cell> opponentBombedCells = new ArrayList<>();
+            Player player = new Player(board, opponentBombedCells);
+            while (player.getBoard().getVesselList().size() < 5) {
+                int X;
+                int Y;
+                Scanner input = new Scanner(System.in);
+                System.out.println("Please specify a number for the vessel: 2 Corvette, 3 Submarine, 4 Destroyer, 5 Cruiser, 6 Carrier");
+                int vesselSize = input.nextInt();
+                VesselType vesselType = numberToVesselTypeDictionary.get(vesselSize);
+                System.out.println(vesselType.getName());
+                System.out.println("Enter the starting x value: ");
+                X = input.nextInt();
+                System.out.println("Enter the starting y value: ");
+                Y = input.nextInt();
+                System.out.println("Enter the orientation H or V: ");
+                String usersOrientation = input.next();
+                Orientation orientation = letterToOrientationDictionary.get(usersOrientation);
+                System.out.println(orientation);
+                Vessel vessel = new Vessel(vesselType, X, Y, orientation);
+                if (vessel.fitsOnBoard(player.getBoard())) {
+                    player.getBoard().updateVesselList(vessel);
+                }
+                System.out.println(player.getBoard().getVesselList().size());
+            }
 
-        Board board = new Board(10, 10);
-        List<Cell> opponentBombedCells = new ArrayList<>();
-        Player player = new Player(board, opponentBombedCells);
-        while (player.getBoard().getVesselList().size() < 5) {
-
-            VesselType typeOfVessel = null;
-            Orientation userOrientation;
-            int X;
-            int Y;
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please specify a number for the vessel: 2 Corvette, 3 Submarine, 4 Destroyer, 5 Cruiser, 6 Carrier");
-            int vesselSize = input.nextInt();
-            if (vesselSize == 2) {
-                typeOfVessel = VesselType.CORVETTE;
-                System.out.println(typeOfVessel.getName());
-            }
-            if (vesselSize == 3) {
-                typeOfVessel = VesselType.SUBMARINE;
-                System.out.println(typeOfVessel.getName());
-            }
-            if (vesselSize == 4) {
-                typeOfVessel = VesselType.DESTROYER;
-                System.out.println(typeOfVessel.getName());
-            }
-            if (vesselSize == 5) {
-                typeOfVessel = VesselType.CRUISER;
-                System.out.println(typeOfVessel.getName());
-            }
-            if (vesselSize == 6) {
-                typeOfVessel = VesselType.CARRIER;
-                System.out.println(typeOfVessel.getName());
-            }
-            System.out.println("Enter the starting x value: ");
-            X = input.nextInt();
-            System.out.println("Enter the starting y value: ");
-            Y = input.nextInt();
-            System.out.println("Enter the orientation H or V: ");
-            userOrientation = Orientation.valueOf(input.next());
-            System.out.println(userOrientation);
-            Vessel vessel = new Vessel(typeOfVessel, X, Y, userOrientation);
-            if (vessel.fitsOnBoard(player.getBoard())) {
-                player.getBoard().updateVesselList(vessel);
-            }
-            System.out.println(player.getBoard().getVesselList().size());
         }
-
     }
 
     public static void main(String args[]) {
