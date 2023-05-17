@@ -21,7 +21,7 @@ public class BattleShips {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
-        //promptForVessels(grid);
+        promptForVessels(grid);
         printArray(grid);
         return grid;
     }

@@ -6,11 +6,11 @@ import java.util.List;
 public class Board {
     private int length;
     private int width;
-    private String[][] grid = {};
+    private int[][] grid = {};
     private List<Vessel> vesselList = new ArrayList<>();
 
 
-    public Board(int length, int width, String[][] grid) {
+    public Board(int length, int width, int[][] grid) {
         this.length = length;
         this.width = width;
         this.grid = grid;
@@ -24,7 +24,7 @@ public class Board {
         return width;
     }
 
-    public String[][] getGrid() {
+    public int[][] getGrid() {
         return grid;
     }
 
@@ -38,11 +38,11 @@ public class Board {
         this.width = width;
     }
 
-    public String[][] createEmptyBoard() {
-        grid = new String[length][width];
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                grid[i][j] = " ";
+    public int[][] createEmptyBoard() {
+        grid = new int[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                grid[i][j] =0;
                 System.out.print(grid[i][j] + "|");
             }
             System.out.println(" ");
@@ -75,8 +75,6 @@ public class Board {
             if(allowedOnBoard){
                 vesselList.add(vessel);
             }
-
-
 
             //perform check to see if vessel can be added to board
             //if so, add it to the vessel list and return true

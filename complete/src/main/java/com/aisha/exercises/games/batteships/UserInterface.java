@@ -4,11 +4,13 @@ import java.util.*;
 
 public class UserInterface {
 
+    List<Player> playerList = new ArrayList<>();
+
 
     private Map<Integer, VesselType> numberToVesselTypeDictionary = new HashMap<Integer, VesselType>() {{
         put(2, VesselType.CORVETTE);
         put(3, VesselType.SUBMARINE);
-        put(4, VesselType.SUBMARINE);
+        put(4, VesselType.DESTROYER);
         put(5, VesselType.CRUISER);
         put(6, VesselType.CARRIER);
     }};
@@ -20,11 +22,12 @@ public class UserInterface {
 
 
     public void userInput() {
-        for (int i = 0; i < 2; i++) {
+        while (playerList.size() < 3) {
             Board board = new Board(10, 10);
+            int[][] grid = board.createEmptyBoard();
             List<Cell> opponentBombedCells = new ArrayList<>();
             Player player = new Player(board, opponentBombedCells);
-            while (player.getBoard().getVesselList().size() < 5) {
+            while (board.getVesselList().size() < 5) {
                 int X;
                 int Y;
                 Scanner input = new Scanner(System.in);
@@ -41,14 +44,31 @@ public class UserInterface {
                 Orientation orientation = letterToOrientationDictionary.get(usersOrientation);
                 System.out.println(orientation);
                 Vessel vessel = new Vessel(vesselType, X, Y, orientation);
-                if (vessel.fitsOnBoard(player.getBoard())) {
-                    player.getBoard().updateVesselList(vessel);
+
+                if (vessel.fitsOnBoard(board)) {
+                    int oldVesselListSize = board.getVesselList().size();
+                    int newVesselListSize = player.getBoard().updateVesselList(vessel);
+                    if (newVesselListSize > oldVesselListSize) {
+                        System.out.println("This is how the board looks now");
+                        //Draw the board
+                        for (int i = 0; i < vesselSize; i++) {
+                            if (orientation.equals(Orientation.HORIZONTAL)) {
+                                grid[X + i][Y] = 1;
+                            } else if (orientation.equals(Orientation.VERTICAL)) {
+                                grid[X][Y + i] = 1;
+                            }
+                            System.out.println(grid);
+                        }
+                    }
                 }
                 System.out.println(player.getBoard().getVesselList().size());
             }
+            playerList.add(player);
+            System.out.println("Player" + playerList.size() + "has placed their ships");
 
         }
     }
+
 
     public static void main(String args[]) {
         UserInterface userInterface = new UserInterface();
