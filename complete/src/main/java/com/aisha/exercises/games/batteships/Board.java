@@ -39,9 +39,9 @@ public class Board {
     }
 
     public int[][] createEmptyBoard() {
-        grid = new int[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        grid = new int[length][width];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
                 grid[i][j] =0;
                 System.out.print(grid[i][j] + "|");
             }

@@ -24,21 +24,18 @@ public class UserInterface {
     public void userInput() {
         while (playerList.size() < 3) {
             Board board = new Board(10, 10);
-            int[][] grid = board.createEmptyBoard();
             List<Cell> opponentBombedCells = new ArrayList<>();
             Player player = new Player(board, opponentBombedCells);
             while (board.getVesselList().size() < 5) {
-                int X;
-                int Y;
                 Scanner input = new Scanner(System.in);
                 System.out.println("Please specify a number for the vessel: 2 Corvette, 3 Submarine, 4 Destroyer, 5 Cruiser, 6 Carrier");
                 int vesselSize = input.nextInt();
                 VesselType vesselType = numberToVesselTypeDictionary.get(vesselSize);
                 System.out.println(vesselType.getName());
                 System.out.println("Enter the starting x value: ");
-                X = input.nextInt();
+                int X = input.nextInt();
                 System.out.println("Enter the starting y value: ");
-                Y = input.nextInt();
+                int Y = input.nextInt();
                 System.out.println("Enter the orientation H or V: ");
                 String usersOrientation = input.next();
                 Orientation orientation = letterToOrientationDictionary.get(usersOrientation);
@@ -51,13 +48,13 @@ public class UserInterface {
                     if (newVesselListSize > oldVesselListSize) {
                         System.out.println("This is how the board looks now");
                         //Draw the board
+                        int[][] grid = board.createEmptyBoard();
                         for (int i = 0; i < vesselSize; i++) {
                             if (orientation.equals(Orientation.HORIZONTAL)) {
                                 grid[X + i][Y] = 1;
                             } else if (orientation.equals(Orientation.VERTICAL)) {
                                 grid[X][Y + i] = 1;
                             }
-                            System.out.println(grid);
                         }
                     }
                 }
