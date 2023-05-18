@@ -38,16 +38,53 @@ public class Board {
         this.width = width;
     }
 
-    public int[][] createEmptyBoard() {
+    public int[][] showEmpty() {
         grid = new int[length][width];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                grid[i][j] =0;
+                grid[i][j] = 0;
                 System.out.print(grid[i][j] + "|");
             }
             System.out.println(" ");
         }
         return grid;
+    }
+
+    public void draw() {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(grid[i][j] + "|");
+            }
+            System.out.println(" ");
+        }
+    }
+
+    public int[][] populateGrid() {
+        grid = new int[length][width];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                //Check for match with vessel and then set value corresponding to size
+                for (Vessel vessel : vesselList) {
+                    List<Cell> vesselsCells = vessel.getCellList();
+                    for (Cell cell : vesselsCells) {
+                        if (cell.getXCoordinate() == i && cell.getYCoordinate() == j) {
+                            for (int k = 0; k < vessel.getVesselType().getSize(); k++) {
+                                if (vessel.getOrientation().equals(Orientation.HORIZONTAL)) {
+                                    grid[cell.getXCoordinate() + 1][cell.getYCoordinate()] = vessel.getVesselType().getSize();
+                                }
+                                if (vessel.getOrientation().equals(Orientation.VERTICAL)) {
+                                    grid[cell.getXCoordinate()][cell.getYCoordinate() + 1] = vessel.getVesselType().getSize();
+                                }
+                            }
+                        }
+                    }
+                }
+                System.out.print(grid[i][j] + "|");
+            }
+            System.out.println(" ");
+        }
+        return grid;
+
     }
 
     public int updateVesselList(Vessel vessel) {
@@ -72,7 +109,7 @@ public class Board {
                     }
                 }
             }
-            if(allowedOnBoard){
+            if (allowedOnBoard) {
                 vesselList.add(vessel);
             }
 

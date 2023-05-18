@@ -198,4 +198,21 @@ class BoardTest {
         assertEquals(5, boardTestTarget.updateVesselList(fithVessel));
     }
 
+    @Test
+    @DisplayName("Grid is set up with a carrier at 3,4")
+    void grid_scenario1() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.CARRIER, 3, 3, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        int[][] grid = boardTestTarget.populateGrid();
+        assertEquals(6, grid[3][4]);
+        assertEquals(6, grid[3][5]);
+        assertEquals(6, grid[3][6]);
+        assertEquals(6, grid[3][7]);
+        assertEquals(6, grid[3][8]);
+        assertEquals(6, grid[3][9]);
+
+
+    }
+
 }

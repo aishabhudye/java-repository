@@ -48,14 +48,7 @@ public class UserInterface {
                     if (newVesselListSize > oldVesselListSize) {
                         System.out.println("This is how the board looks now");
                         //Draw the board
-                        int[][] grid = board.createEmptyBoard();
-                        for (int i = 0; i < vesselSize; i++) {
-                            if (orientation.equals(Orientation.HORIZONTAL)) {
-                                grid[X + i][Y] = 1;
-                            } else if (orientation.equals(Orientation.VERTICAL)) {
-                                grid[X][Y + i] = 1;
-                            }
-                        }
+                        int[][] grid = board.populateGrid();
                     }
                 }
                 System.out.println(player.getBoard().getVesselList().size());
@@ -65,7 +58,6 @@ public class UserInterface {
 
         }
     }
-
 
     public static void main(String args[]) {
         UserInterface userInterface = new UserInterface();
