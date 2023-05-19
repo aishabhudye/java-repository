@@ -53,7 +53,11 @@ public class Board {
     public void draw() {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(grid[i][j] + "|");
+                if (j == 0) {
+                    System.out.print("|" + grid[j][i] + "|");
+                } else {
+                    System.out.print(grid[j][i] + "|");
+                }
             }
             System.out.println(" ");
         }
@@ -68,20 +72,11 @@ public class Board {
                     List<Cell> vesselsCells = vessel.getCellList();
                     for (Cell cell : vesselsCells) {
                         if (cell.getXCoordinate() == i && cell.getYCoordinate() == j) {
-                            for (int k = 0; k < vessel.getVesselType().getSize(); k++) {
-                                if (vessel.getOrientation().equals(Orientation.HORIZONTAL)) {
-                                    grid[cell.getXCoordinate() + 1][cell.getYCoordinate()] = vessel.getVesselType().getSize();
-                                }
-                                if (vessel.getOrientation().equals(Orientation.VERTICAL)) {
-                                    grid[cell.getXCoordinate()][cell.getYCoordinate() + 1] = vessel.getVesselType().getSize();
-                                }
-                            }
+                            grid[cell.getXCoordinate()][cell.getYCoordinate()] = vessel.getVesselType().getSize();
                         }
                     }
                 }
-                System.out.print(grid[i][j] + "|");
             }
-            System.out.println(" ");
         }
         return grid;
 

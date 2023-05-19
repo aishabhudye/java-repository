@@ -202,17 +202,71 @@ class BoardTest {
     @DisplayName("Grid is set up with a carrier at 3,4")
     void grid_scenario1() {
         //Create a carrierVessel
-        Vessel carrierVessel = new Vessel(VesselType.CARRIER, 3, 3, Orientation.VERTICAL);
+        Vessel carrierVessel = new Vessel(VesselType.CARRIER, 3, 4, Orientation.VERTICAL);
         boardTestTarget.updateVesselList(carrierVessel);
         int[][] grid = boardTestTarget.populateGrid();
+        boardTestTarget.draw();
         assertEquals(6, grid[3][4]);
         assertEquals(6, grid[3][5]);
         assertEquals(6, grid[3][6]);
         assertEquals(6, grid[3][7]);
         assertEquals(6, grid[3][8]);
         assertEquals(6, grid[3][9]);
-
-
     }
+
+    @Test
+    @DisplayName("Grid is set up with a corvette at 2,3")
+    void grid_scenario2() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 2, 3, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        int[][] grid = boardTestTarget.populateGrid();
+        boardTestTarget.draw();
+        assertEquals(2, grid[2][3]);
+        assertEquals(2, grid[3][3]);
+    }
+
+    @Test
+    @DisplayName("Grid is set up with a cruiser at 3,9")
+    void grid_scenario3() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.CRUISER, 3, 9, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        int[][] grid = boardTestTarget.populateGrid();
+        boardTestTarget.draw();
+        assertEquals(5, grid[3][9]);
+        assertEquals(5, grid[4][9]);
+        assertEquals(5, grid[5][9]);
+        assertEquals(5, grid[6][9]);
+        assertEquals(5, grid[7][9]);
+    }
+
+    @Test
+    @DisplayName("Grid is set up with a destroyer at 8,5")
+    void grid_scenario4() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.DESTROYER, 8, 5, Orientation.VERTICAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        int[][] grid = boardTestTarget.populateGrid();
+        boardTestTarget.draw();
+        assertEquals(4, grid[8][5]);
+        assertEquals(4, grid[8][6]);
+        assertEquals(4, grid[8][7]);
+        assertEquals(4, grid[8][8]);
+    }
+
+    @Test
+    @DisplayName("Grid is set up with a submarine at 6,5")
+    void grid_scenario5() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.SUBMARINE, 6, 5, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        int[][] grid = boardTestTarget.populateGrid();
+        boardTestTarget.draw();
+        assertEquals(3, grid[6][5]);
+        assertEquals(3, grid[7][5]);
+        assertEquals(3, grid[8][5]);
+    }
+
 
 }

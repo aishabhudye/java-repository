@@ -48,7 +48,8 @@ public class UserInterface {
                     if (newVesselListSize > oldVesselListSize) {
                         System.out.println("This is how the board looks now");
                         //Draw the board
-                        int[][] grid = board.populateGrid();
+                        board.populateGrid();
+                        board.draw();
                     }
                 }
                 System.out.println(player.getBoard().getVesselList().size());
