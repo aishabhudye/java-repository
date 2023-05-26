@@ -7,6 +7,18 @@ import java.util.List;
 public class Vessel {
     private VesselType vesselType;
     private List<Cell> cellList = new LinkedList<>();
+    private boolean sunk;
+
+    public boolean isSunk() {
+        return sunk;
+    }
+
+    public Vessel(VesselType vesselType, List<Cell> cellList, boolean sunk, Orientation orientation) {
+        this.vesselType = vesselType;
+        this.cellList = cellList;
+        this.sunk = sunk;
+        this.orientation = orientation;
+    }
 
     public Vessel(VesselType vesselType, int xStartCoordinate, int yStartCoordinate, Orientation orientation) {
         this.vesselType = vesselType;

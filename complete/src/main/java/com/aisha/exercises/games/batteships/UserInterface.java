@@ -64,7 +64,6 @@ public class UserInterface {
         Board board = new Board(10, 10);
         List<Cell> opponentBombedCells = new ArrayList<>();
         Player player = new Player(board, opponentBombedCells);
-        Player player2 = new Player(board, opponentBombedCells);
         List<Vessel> vesselList = board.getVesselList();
         while (board.getVesselList().size() != 5) {
             Scanner input = new Scanner(System.in);
@@ -77,7 +76,8 @@ public class UserInterface {
                 for (Vessel vessel : vesselList) {
                     int index = 0;
                     if (cell.getXCoordinate() == vessel.getCellList().get(index).getXCoordinate() && cell.getYCoordinate() == vessel.getCellList().get(index).getYCoordinate()) {
-                        player2.updateOpponentBoardBombedCells(cell, board);
+                        player.updateOpponentBoardBombedCells(cell, board);
+                        System.out.println("Player had bombed cell " + XCoordinate + YCoordinate + "of vessel" + vessel.getVesselType().getName());
                     }
                 }
 
@@ -88,7 +88,7 @@ public class UserInterface {
 
     public static void main(String[] args) {
         UserInterface userInterface = new UserInterface();
-        userInterface.promptUserToBombCell();
         userInterface.promptUserForVessels();
+        userInterface.promptUserToBombCell();
     }
 }

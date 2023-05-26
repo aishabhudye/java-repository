@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -266,6 +269,25 @@ class BoardTest {
         assertEquals(3, grid[6][5]);
         assertEquals(3, grid[7][5]);
         assertEquals(3, grid[8][5]);
+    }
+
+    @Test
+    @DisplayName("cell at 6,5 is bombed on Corvette")
+    void grid_scenario6() {
+        //Create a carrierVessel
+        Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 6, 5, Orientation.HORIZONTAL);
+        boardTestTarget.updateVesselList(carrierVessel);
+        List<Cell> opponentBombedCells = new ArrayList<>();
+        Board playersOwnBoard = new Board(10,10);
+        Player player = new Player(playersOwnBoard, opponentBombedCells);
+        Cell cell = new Cell(6, 5);
+        player.updateOpponentBoardBombedCells(cell, boardTestTarget);
+        Cell VesselCell = carrierVessel.getCellList().get(0);
+        Cell bombedCell = player.getOpponentBoardBombedCells().get(0);
+        boolean successfulBombedCell = VesselCell.getXCoordinate() == bombedCell.getXCoordinate() && VesselCell.getYCoordinate() == bombedCell.getYCoordinate();
+        assertTrue(successfulBombedCell);
+
+
     }
 
 
