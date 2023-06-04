@@ -1,6 +1,7 @@
 package com.aisha.exercises.games.batteships;
 
 import java.util.*;
+import java.util.concurrent.Callable;
 
 public class UserInterface {
 
@@ -63,27 +64,35 @@ public class UserInterface {
     public void promptUserToBombCell() {
         Board board = new Board(10, 10);
         List<Cell> opponentBombedCells = new ArrayList<>();
-        Player player = new Player(board, opponentBombedCells);
+        Player playerBeingBombed = new Player(board, opponentBombedCells);
         List<Vessel> vesselList = board.getVesselList();
-        while (board.getVesselList().size() != 5) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please specify X coordinate to bomb");
-            int XCoordinate = input.nextInt();
-            System.out.println("Please specify Y coordinate to bomb");
-            int YCoordinate = input.nextInt();
-            Cell cell = new Cell(XCoordinate, YCoordinate);
-            if (player.cellIsOnBoard(cell, board)) {
-                for (Vessel vessel : vesselList) {
-                    int index = 0;
-                    if (cell.getXCoordinate() == vessel.getCellList().get(index).getXCoordinate() && cell.getYCoordinate() == vessel.getCellList().get(index).getYCoordinate()) {
-                        player.updateOpponentBoardBombedCells(cell, board);
-                        System.out.println("Player had bombed cell " + XCoordinate + YCoordinate + "of vessel" + vessel.getVesselType().getName());
+        for (Vessel vessel : vesselList) {
+            for (Cell vesselCell : vessel.getCellList()) {
+                for (Cell opponnentCell : opponentBombedCells) {
+                    if (vesselCell.getXCoordinate() != opponnentCell.getXCoordinate() && vesselCell.getYCoordinate() != opponnentCell.getYCoordinate()) {
+                        Scanner input = new Scanner(System.in);
+                        System.out.println("Please specify X coordinate to bomb");
+                        int XCoordinate = input.nextInt();
+                        System.out.println("Please specify Y coordinate to bomb");
+                        int YCoordinate = input.nextInt();
+                        Cell userCell = new Cell(XCoordinate, YCoordinate);
+                        if (playerBeingBombed.cellIsOnBoard(userCell, board)) {
+                            for (int index = 0; index < vessel.getCellList().size(); index++) {
+                                if (userCell.getXCoordinate() == vessel.getCellList().get(index).getXCoordinate() && userCell.getYCoordinate() == vessel.getCellList().get(index).getYCoordinate()) {
+                                    playerBeingBombed.updateOpponentBoardBombedCells(userCell, board);
+                                    System.out.println("Player had bombed cell " + XCoordinate + YCoordinate + "of vessel" + vessel.getVesselType().getName());
+                                }
+                            }
+
+
+                        }
+
                     }
                 }
-
-
             }
         }
+
+
     }
 
     public static void main(String[] args) {
