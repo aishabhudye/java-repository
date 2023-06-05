@@ -281,7 +281,7 @@ class BoardTest {
         Board playersOwnBoard = new Board(10, 10);
         Player player = new Player(playersOwnBoard, opponentBombedCells);
         Cell cell = new Cell(6, 5);
-        player.updateCell(cell, boardTestTarget);
+        player.trackCellsBombedOnOpponentsBoard(cell, boardTestTarget);
         Cell VesselCell = carrierVessel.getCellList().get(0);
         Cell bombedCell = player.getOpponentBoardBombedCells().get(0);
         boolean successfulBombedCell = VesselCell.getXCoordinate() == bombedCell.getXCoordinate() && VesselCell.getYCoordinate() == bombedCell.getYCoordinate();
@@ -304,13 +304,15 @@ class BoardTest {
         Player attacker = new Player(attackerBoard, cellsBombedByAttacker);
 
         Cell firstCellToBomb = new Cell(5, 6);
-        attacker.updateCell(firstCellToBomb, defender.getBoard());
+        attacker.trackCellsBombedOnOpponentsBoard(firstCellToBomb, defender.getBoard());
 
         Cell secondCellToBomb = new Cell(5, 7);
-        attacker.updateCell(secondCellToBomb, defender.getBoard());
+        attacker.trackCellsBombedOnOpponentsBoard(secondCellToBomb, defender.getBoard());
 
         Cell thirdCellToBomb = new Cell(5, 8);
-        attacker.updateCell(thirdCellToBomb, defender.getBoard());
+        attacker.trackCellsBombedOnOpponentsBoard(thirdCellToBomb, defender.getBoard());
+
+        ////
 
         Cell vesselCell = submarine.getCellList().get(0);
         Cell bombedCell = attacker.getOpponentBoardBombedCells().get(0);

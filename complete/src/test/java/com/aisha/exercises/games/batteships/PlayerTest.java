@@ -20,7 +20,7 @@ class PlayerTest {
     @DisplayName("first cell should be added successfully to the list ")
     void scenario1() {
         Cell cell = new Cell(1, 1);
-        assertTrue(playerTestTarget.updateCell(cell, board));
+        assertTrue(playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board));
     }
 
     @Test
@@ -28,27 +28,27 @@ class PlayerTest {
             "Duplicate cells are not allowed")
     void scenario2() {
         Cell cell = new Cell(1, 1);
-        playerTestTarget.updateCell(cell, board);
+        playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board);
         Cell cell2 = new Cell(1, 1);
-        assertFalse(playerTestTarget.updateCell(cell2, board));
+        assertFalse(playerTestTarget.trackCellsBombedOnOpponentsBoard(cell2, board));
     }
 
     @Test
     @DisplayName("Different cells are allowed")
     void scenario3() {
         Cell cell = new Cell(1, 1);
-        playerTestTarget.updateCell(cell, board);
+        playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board);
         Cell cell2 = new Cell(2, 3);
-        assertTrue(playerTestTarget.updateCell(cell2, board));
+        assertTrue(playerTestTarget.trackCellsBombedOnOpponentsBoard(cell2, board));
     }
 
     @Test
     @DisplayName("Different cells are allowed")
     void scenario4() {
         Cell cell = new Cell(1, 1);
-        playerTestTarget.updateCell(cell, board);
+        playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board);
         Cell cell2 = new Cell(3, 1);
-        assertTrue(playerTestTarget.updateCell(cell2, board));
+        assertTrue(playerTestTarget.trackCellsBombedOnOpponentsBoard(cell2, board));
     }
 
 }

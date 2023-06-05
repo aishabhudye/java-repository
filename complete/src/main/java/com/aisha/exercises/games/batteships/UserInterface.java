@@ -61,25 +61,34 @@ public class UserInterface {
     }
 
     public void promptUserToBombCell() {
+        //The board and the list of cells under attack need to come from the player in the  playerList as in previous method.
         Board boardUnderAttack = new Board(10, 10);
         List<Cell> cellsUnderAttack = new ArrayList<>();
         Player attacker = new Player(boardUnderAttack, cellsUnderAttack);
+        //The vesselList of the vessels under attack need to come from the player's boards(player being attacked).
         List<Vessel> vesselsUnderAttack = boardUnderAttack.getVesselList();
+        //Loop over the vessels in the vesselList of the player that is being attacked and obtain the list of cells for each of those vessels
+        //Check if the vessel cells match the cells in the opponent's bombed cell list which is on the attacker player.
         for (Vessel currentVesselUnderAttack : vesselsUnderAttack) {
             for (Cell vesselCell : currentVesselUnderAttack.getCellList()) {
                 for (Cell cellUnderAttack : cellsUnderAttack) {
                     if (vesselCell.getXCoordinate() != cellUnderAttack.getXCoordinate() && vesselCell.getYCoordinate() != cellUnderAttack.getYCoordinate()) {
+                        //If not then ask for input of X and Y coordinate of where the attacker would like to bomb
                         Scanner input = new Scanner(System.in);
                         System.out.println("Please specify X coordinate to bomb");
                         int xCoordinateToBomb = input.nextInt();
                         System.out.println("Please specify Y coordinate to bomb");
                         int yCoordinateToBomb = input.nextInt();
                         Cell cellBombedByAttacker = new Cell(xCoordinateToBomb, yCoordinateToBomb);
-                        if (attacker.hasBombedAValidCell(cellBombedByAttacker, boardUnderAttack)) {
+                        //Check that cell input is valid and is allowed
+                        if (attacker.hasDroppedBombOnOpponentsBoard(cellBombedByAttacker, boardUnderAttack)) {
                             for (int index = 0; index < currentVesselUnderAttack.getCellList().size(); index++) {
+                                //Check if the cell input from the user matches any cells of the vessels on the board of the player being attacked
                                 if (cellBombedByAttacker.getXCoordinate() == currentVesselUnderAttack.getCellList().get(index).getXCoordinate() && cellBombedByAttacker.getYCoordinate() == currentVesselUnderAttack.getCellList().get(index).getYCoordinate()) {
-                                    attacker.updateCell(cellBombedByAttacker, boardUnderAttack);
+                                    attacker.trackCellsBombedOnOpponentsBoard(cellBombedByAttacker, boardUnderAttack);
+                                    //Add cell to the list of the attacker
                                     System.out.println("Player had bombed cell " + xCoordinateToBomb + yCoordinateToBomb + "of vessel" + currentVesselUnderAttack.getVesselType().getName());
+                                    //Move to next player
                                 }
                             }
                         }

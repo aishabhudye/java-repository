@@ -19,10 +19,10 @@ public class Player {
         return opponentBoardBombedCells;
     }
 
-    public boolean updateCell(Cell bombedCell, Board opponentBoard) {
-        if (hasBombedAValidCell(bombedCell, opponentBoard)) {
+    public boolean trackCellsBombedOnOpponentsBoard(Cell cellToBomb, Board opponentBoard) {
+        if (hasDroppedBombOnOpponentsBoard(cellToBomb, opponentBoard)) {
             if (opponentBoardBombedCells.size() == 0) {
-                opponentBoardBombedCells.add(bombedCell);
+                opponentBoardBombedCells.add(cellToBomb);
                 return true;
             } else {
                 boolean allowedCell = false;
@@ -31,12 +31,12 @@ public class Player {
                         previousCell = opponentBoardBombedCells.get(i);
                         int previousXCoordinate = previousCell.getXCoordinate();
                         int previousYCoordinate = previousCell.getYCoordinate();
-                        if ((bombedCell.getXCoordinate() != previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate) || (bombedCell.getXCoordinate() != previousXCoordinate && bombedCell.getYCoordinate() == previousYCoordinate) || (bombedCell.getXCoordinate() == previousXCoordinate && bombedCell.getYCoordinate() != previousYCoordinate)) {
+                        if ((cellToBomb.getXCoordinate() != previousXCoordinate && cellToBomb.getYCoordinate() != previousYCoordinate) || (cellToBomb.getXCoordinate() != previousXCoordinate && cellToBomb.getYCoordinate() == previousYCoordinate) || (cellToBomb.getXCoordinate() == previousXCoordinate && cellToBomb.getYCoordinate() != previousYCoordinate)) {
                             allowedCell = true;
                         }
                     }
                 }
-                opponentBoardBombedCells.add(bombedCell);
+                opponentBoardBombedCells.add(cellToBomb);
                 return allowedCell;
             }
         } else {
@@ -44,11 +44,24 @@ public class Player {
         }
     }
 
-    boolean hasBombedAValidCell(Cell bombedCell, Board board) {
+    public boolean hasVesselOnOpponentBoardBeenHit(Cell bombedCell, Board opponentBoard){
+        //Build logic to check whether a cell of a vessel on the opponent board has been hit i.e. the coordinates match
+        boolean hasVesselHasBeenHit = false;
+        for(Vessel vessel: opponentBoard.getVesselList()){
+            for(Cell vesselCell : vessel.getCellList()){
+                if(vesselCell.getXCoordinate() == bombedCell.getXCoordinate() && vesselCell.getYCoordinate() == bombedCell.getYCoordinate()){
+                    hasVesselHasBeenHit = true;
+                }
+            }
+        }
+        return hasVesselHasBeenHit;
+    }
+
+    boolean hasDroppedBombOnOpponentsBoard(Cell bombedCell, Board opponentBoard) {
         int xCellCoordinate = bombedCell.getXCoordinate();
         int yCellCoordinate = bombedCell.getYCoordinate();
-        boolean cellFitsInLength = 0 <= xCellCoordinate && xCellCoordinate <= board.getLength();
-        boolean cellFitsInWidth = 0 <= yCellCoordinate && yCellCoordinate <= board.getWidth();
+        boolean cellFitsInLength = 0 <= xCellCoordinate && xCellCoordinate <= opponentBoard.getLength();
+        boolean cellFitsInWidth = 0 <= yCellCoordinate && yCellCoordinate <= opponentBoard.getWidth();
         if (cellFitsInLength && cellFitsInWidth) {
             return true;
         } else {
