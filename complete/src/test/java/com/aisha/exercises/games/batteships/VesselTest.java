@@ -202,7 +202,4 @@ class VesselTest {
         assertEquals(9, cellList.get(VesselType.CARRIER.getSize() - 1).getYCoordinate());
     }
 
-
-
-
 }

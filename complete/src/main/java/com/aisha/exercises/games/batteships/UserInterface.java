@@ -1,7 +1,6 @@
 package com.aisha.exercises.games.batteships;
 
 import java.util.*;
-import java.util.concurrent.Callable;
 
 public class UserInterface {
 
@@ -23,7 +22,7 @@ public class UserInterface {
 
 
     public void promptUserForVessels() {
-        while (playerList.size() < 3) {
+        while (playerList.size() <= 2) {
             Board board = new Board(10, 10);
             List<Cell> opponentBombedCells = new ArrayList<>();
             Player player = new Player(board, opponentBombedCells);
@@ -62,42 +61,41 @@ public class UserInterface {
     }
 
     public void promptUserToBombCell() {
-        Board board = new Board(10, 10);
-        List<Cell> opponentBombedCells = new ArrayList<>();
-        Player playerBeingBombed = new Player(board, opponentBombedCells);
-        List<Vessel> vesselList = board.getVesselList();
-        for (Vessel vessel : vesselList) {
-            for (Cell vesselCell : vessel.getCellList()) {
-                for (Cell opponnentCell : opponentBombedCells) {
-                    if (vesselCell.getXCoordinate() != opponnentCell.getXCoordinate() && vesselCell.getYCoordinate() != opponnentCell.getYCoordinate()) {
+        Board boardUnderAttack = new Board(10, 10);
+        List<Cell> cellsUnderAttack = new ArrayList<>();
+        Player attacker = new Player(boardUnderAttack, cellsUnderAttack);
+        List<Vessel> vesselsUnderAttack = boardUnderAttack.getVesselList();
+        for (Vessel currentVesselUnderAttack : vesselsUnderAttack) {
+            for (Cell vesselCell : currentVesselUnderAttack.getCellList()) {
+                for (Cell cellUnderAttack : cellsUnderAttack) {
+                    if (vesselCell.getXCoordinate() != cellUnderAttack.getXCoordinate() && vesselCell.getYCoordinate() != cellUnderAttack.getYCoordinate()) {
                         Scanner input = new Scanner(System.in);
                         System.out.println("Please specify X coordinate to bomb");
-                        int XCoordinate = input.nextInt();
+                        int xCoordinateToBomb = input.nextInt();
                         System.out.println("Please specify Y coordinate to bomb");
-                        int YCoordinate = input.nextInt();
-                        Cell userCell = new Cell(XCoordinate, YCoordinate);
-                        if (playerBeingBombed.cellIsOnBoard(userCell, board)) {
-                            for (int index = 0; index < vessel.getCellList().size(); index++) {
-                                if (userCell.getXCoordinate() == vessel.getCellList().get(index).getXCoordinate() && userCell.getYCoordinate() == vessel.getCellList().get(index).getYCoordinate()) {
-                                    playerBeingBombed.updateOpponentBoardBombedCells(userCell, board);
-                                    System.out.println("Player had bombed cell " + XCoordinate + YCoordinate + "of vessel" + vessel.getVesselType().getName());
+                        int yCoordinateToBomb = input.nextInt();
+                        Cell cellBombedByAttacker = new Cell(xCoordinateToBomb, yCoordinateToBomb);
+                        if (attacker.hasBombedAValidCell(cellBombedByAttacker, boardUnderAttack)) {
+                            for (int index = 0; index < currentVesselUnderAttack.getCellList().size(); index++) {
+                                if (cellBombedByAttacker.getXCoordinate() == currentVesselUnderAttack.getCellList().get(index).getXCoordinate() && cellBombedByAttacker.getYCoordinate() == currentVesselUnderAttack.getCellList().get(index).getYCoordinate()) {
+                                    attacker.updateCell(cellBombedByAttacker, boardUnderAttack);
+                                    System.out.println("Player had bombed cell " + xCoordinateToBomb + yCoordinateToBomb + "of vessel" + currentVesselUnderAttack.getVesselType().getName());
                                 }
                             }
-
-
                         }
-
+                    } else {
+                        System.out.println("Player has won");
                     }
                 }
             }
         }
-
-
     }
 
     public static void main(String[] args) {
         UserInterface userInterface = new UserInterface();
         userInterface.promptUserForVessels();
-        userInterface.promptUserToBombCell();
+        //At this stage, both players should have a valid board of vessels EACH
+
+        //userInterface.promptUserToBombCell();
     }
 }

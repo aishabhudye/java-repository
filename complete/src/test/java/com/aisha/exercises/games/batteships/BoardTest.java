@@ -278,17 +278,56 @@ class BoardTest {
         Vessel carrierVessel = new Vessel(VesselType.CORVETTE, 6, 5, Orientation.HORIZONTAL);
         boardTestTarget.updateVesselList(carrierVessel);
         List<Cell> opponentBombedCells = new ArrayList<>();
-        Board playersOwnBoard = new Board(10,10);
+        Board playersOwnBoard = new Board(10, 10);
         Player player = new Player(playersOwnBoard, opponentBombedCells);
         Cell cell = new Cell(6, 5);
-        player.updateOpponentBoardBombedCells(cell, boardTestTarget);
+        player.updateCell(cell, boardTestTarget);
         Cell VesselCell = carrierVessel.getCellList().get(0);
         Cell bombedCell = player.getOpponentBoardBombedCells().get(0);
         boolean successfulBombedCell = VesselCell.getXCoordinate() == bombedCell.getXCoordinate() && VesselCell.getYCoordinate() == bombedCell.getYCoordinate();
         assertTrue(successfulBombedCell);
 
-
     }
 
+    @Test
+    @DisplayName("Attacker has bombed a submarine vessel")
+    void grid_scenario7() {
+
+        List<Cell> cellsBombedByDefender = new ArrayList<>();
+        Board defenderBoard = new Board(10, 10);
+        Vessel submarine = new Vessel(VesselType.SUBMARINE, 5, 6, Orientation.VERTICAL);
+        defenderBoard.updateVesselList(submarine);
+        Player defender = new Player(defenderBoard,cellsBombedByDefender);
+
+        List<Cell> cellsBombedByAttacker = new ArrayList<>();
+        Board attackerBoard = new Board(10,10);
+        Player attacker = new Player(attackerBoard, cellsBombedByAttacker);
+
+        Cell firstCellToBomb = new Cell(5, 6);
+        attacker.updateCell(firstCellToBomb, defender.getBoard());
+
+        Cell secondCellToBomb = new Cell(5, 7);
+        attacker.updateCell(secondCellToBomb, defender.getBoard());
+
+        Cell thirdCellToBomb = new Cell(5, 8);
+        attacker.updateCell(thirdCellToBomb, defender.getBoard());
+
+        Cell vesselCell = submarine.getCellList().get(0);
+        Cell bombedCell = attacker.getOpponentBoardBombedCells().get(0);
+
+        Cell bombedCell2 = attacker.getOpponentBoardBombedCells().get(1);
+        Cell VesselCell2 = submarine.getCellList().get(1);
+
+        Cell VesselCell3 = submarine.getCellList().get(2);
+        Cell bombedCell3 = attacker.getOpponentBoardBombedCells().get(2);
+
+        boolean successfulBombedCell = vesselCell.getXCoordinate() == bombedCell.getXCoordinate() && vesselCell.getYCoordinate() == bombedCell.getYCoordinate();
+        boolean successfulBombedCell2 = VesselCell2.getXCoordinate() == bombedCell2.getXCoordinate() && VesselCell2.getYCoordinate() == bombedCell2.getYCoordinate();
+        boolean successfulBombedCell3 = VesselCell3.getXCoordinate() == bombedCell3.getXCoordinate() && VesselCell3.getYCoordinate() == bombedCell3.getYCoordinate();
+        boolean successfulBombedSubmarine = successfulBombedCell && successfulBombedCell2 && successfulBombedCell3;
+
+        assertTrue(successfulBombedSubmarine);
+
+    }
 
 }

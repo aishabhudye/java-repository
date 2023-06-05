@@ -1,8 +1,6 @@
 package com.aisha.exercises.games.batteships;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Player {
     private Board board;
@@ -21,8 +19,8 @@ public class Player {
         return opponentBoardBombedCells;
     }
 
-    public boolean updateOpponentBoardBombedCells(Cell bombedCell, Board opponentBoard) {
-        if (cellIsOnBoard(bombedCell, opponentBoard)) {
+    public boolean updateCell(Cell bombedCell, Board opponentBoard) {
+        if (hasBombedAValidCell(bombedCell, opponentBoard)) {
             if (opponentBoardBombedCells.size() == 0) {
                 opponentBoardBombedCells.add(bombedCell);
                 return true;
@@ -46,7 +44,7 @@ public class Player {
         }
     }
 
-    boolean cellIsOnBoard(Cell bombedCell, Board board) {
+    boolean hasBombedAValidCell(Cell bombedCell, Board board) {
         int xCellCoordinate = bombedCell.getXCoordinate();
         int yCellCoordinate = bombedCell.getYCoordinate();
         boolean cellFitsInLength = 0 <= xCellCoordinate && xCellCoordinate <= board.getLength();
@@ -56,8 +54,6 @@ public class Player {
         } else {
             return false;
         }
-        //TODO: Build this up
-
     }
 
 }

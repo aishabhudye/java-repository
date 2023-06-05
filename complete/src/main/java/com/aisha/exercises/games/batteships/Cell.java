@@ -10,12 +10,6 @@ public class Cell {
         return bombed;
     }
 
-    public Cell(int xCoordinate, int yCoordinate, boolean bombed) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
-        this.bombed = bombed;
-    }
-
     public int getXCoordinate() {
         return xCoordinate;
     }
@@ -27,5 +21,9 @@ public class Cell {
     public Cell(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+    }
+
+    public void setBombed(boolean bombed) {
+        this.bombed = bombed;
     }
 }
