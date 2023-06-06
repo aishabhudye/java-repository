@@ -44,17 +44,22 @@ public class Player {
         }
     }
 
-    public boolean hasVesselOnOpponentBoardBeenHit(Cell bombedCell, Board opponentBoard){
+    public boolean hasVesselOnOpponentBoardBeenHit(Cell bombedCell, Board opponentBoard) {
         //Build logic to check whether a cell of a vessel on the opponent board has been hit i.e. the coordinates match
-        boolean hasVesselHasBeenHit = false;
-        for(Vessel vessel: opponentBoard.getVesselList()){
-            for(Cell vesselCell : vessel.getCellList()){
-                if(vesselCell.getXCoordinate() == bombedCell.getXCoordinate() && vesselCell.getYCoordinate() == bombedCell.getYCoordinate()){
-                    hasVesselHasBeenHit = true;
+        for (Vessel vessel : opponentBoard.getVesselList()) {
+            vessel.setSunk(false);
+            for (Cell vesselCell : vessel.getCellList()) {
+                vesselCell.setBombed(false);
+                if (vesselCell.getXCoordinate() == bombedCell.getXCoordinate() && vesselCell.getYCoordinate() == bombedCell.getYCoordinate()) {
+                    vesselCell.setBombed(true);
+                    if (vessel.getCellList().contains(vesselCell) && vesselCell.isBombed()) {
+                        vessel.setSunk(true);
+                    }
                 }
             }
+            return vessel.isSunk();
         }
-        return hasVesselHasBeenHit;
+        return false;
     }
 
     boolean hasDroppedBombOnOpponentsBoard(Cell bombedCell, Board opponentBoard) {

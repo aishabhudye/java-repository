@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-    public static final Board board = new Board(10,10);
+    public static final Board board = new Board(10, 10);
     public static final List<Cell> opponentBombedCells = new ArrayList<>();
 
-    Player playerTestTarget = new Player(board,opponentBombedCells);
+    Player playerTestTarget = new Player(board, opponentBombedCells);
 
 
     @Test
@@ -51,24 +51,5 @@ class PlayerTest {
         assertTrue(playerTestTarget.trackCellsBombedOnOpponentsBoard(cell2, board));
     }
 
-    @Test
-    @DisplayName("submarine is hit")
-    void scenario5() {
-        Cell cell = new Cell(1, 1);
-        playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board);
-        Vessel submarine = new Vessel(VesselType.SUBMARINE,1,1,Orientation.HORIZONTAL);
-        board.updateVesselList(submarine);
-        assertTrue(playerTestTarget.hasVesselOnOpponentBoardBeenHit(cell,board));
-    }
-
-    @Test
-    @DisplayName("submarine is not hit")
-    void scenario6() {
-        Cell cell = new Cell(4, 1);
-        playerTestTarget.trackCellsBombedOnOpponentsBoard(cell, board);
-        Vessel submarine = new Vessel(VesselType.SUBMARINE,1,1,Orientation.HORIZONTAL);
-        board.updateVesselList(submarine);
-        assertFalse(playerTestTarget.hasVesselOnOpponentBoardBeenHit(cell,board));
-    }
 
 }

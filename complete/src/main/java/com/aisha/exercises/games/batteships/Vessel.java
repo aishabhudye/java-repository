@@ -9,6 +9,10 @@ public class Vessel {
     private List<Cell> cellList = new LinkedList<>();
     private boolean sunk;
 
+    public void setSunk(boolean sunk) {
+        this.sunk = sunk;
+    }
+
     public boolean isSunk() {
         return sunk;
     }
@@ -39,6 +43,7 @@ public class Vessel {
     public List<Cell> getCellList() {
         return cellList;
     }
+
 
 
     public boolean fitsOnBoard(Board board) {
