@@ -46,21 +46,37 @@ public class Player {
 
     public boolean hasVesselOnOpponentBoardBeenHit(Cell bombedCell, Board opponentBoard) {
         //Build logic to check whether a cell of a vessel on the opponent board has been hit i.e. the coordinates match
-        for (Vessel vessel : opponentBoard.getVesselList()) {
+        for (Vessel vessel : opponentBoard.getVesselList()) { //for every vessel in the list
             vessel.setSunk(false);
-            for (Cell vesselCell : vessel.getCellList()) {
-                vesselCell.setBombed(false);
+            for (Cell vesselCell : vessel.getCellList()) { //for every cell in the current vessel from the outer loop
                 if (vesselCell.getXCoordinate() == bombedCell.getXCoordinate() && vesselCell.getYCoordinate() == bombedCell.getYCoordinate()) {
                     vesselCell.setBombed(true);
-                    if (vessel.getCellList().contains(vesselCell) && vesselCell.isBombed()) {
-                        vessel.setSunk(true);
-                    }
+                    return true;
                 }
             }
-            return vessel.isSunk();
         }
         return false;
     }
+
+    public boolean hasAllVesselsOnOpponentBoardBeenSunk(Board opponentBoard) {
+        //Build logic to check whether a cell of a vessel on the opponent board has been hit i.e. the coordinates match
+        int countOfSunkVessels = 0;
+        for (Vessel vessel : opponentBoard.getVesselList()) { //for every vessel in the list
+            for (Cell cell : vessel.getCellList()) {
+                if (cell.isBombed()) {
+                    vessel.setSunk(true);
+                }
+            }
+            if (vessel.isSunk()) {
+                countOfSunkVessels++;
+            }
+        }
+        if (countOfSunkVessels == VesselType.values().length) {
+            return true;
+        }
+        return false;
+    }
+
 
     boolean hasDroppedBombOnOpponentsBoard(Cell bombedCell, Board opponentBoard) {
         int xCellCoordinate = bombedCell.getXCoordinate();
