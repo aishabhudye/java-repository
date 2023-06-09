@@ -100,6 +100,33 @@ public class UserInterface {
         }
     }
 
+    public void promptUserToBombCell1() {
+        int counter = 0;
+        for (int i = 0; i < playerList.size(); i++) {
+            Player attacker = playerList.get(i);
+            Player defender = playerList.get(i + 1);
+            Board boardUnderAttack = defender.getBoard();
+            if (!attacker.hasAllVesselsOnOpponentBoardBeenSunk(boardUnderAttack)) {
+                int result = counter % 2;
+                attacker = playerList.get(result);
+                Scanner input = new Scanner(System.in);
+                System.out.println("Please specify X coordinate to bomb");
+                int xCoordinateToBomb = input.nextInt();
+                System.out.println("Please specify Y coordinate to bomb");
+                int yCoordinateToBomb = input.nextInt();
+                Cell cellBombedByAttacker = new Cell(xCoordinateToBomb, yCoordinateToBomb);
+                if (attacker.hasDroppedBombOnOpponentsBoard(cellBombedByAttacker, boardUnderAttack)) {
+                    if (attacker.hasVesselOnOpponentBoardBeenHit(cellBombedByAttacker, boardUnderAttack)) {
+                        System.out.println("Vessel hit = true");
+                    }
+                }
+                counter++;
+            }else{
+                System.out.println("Player has won");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         UserInterface userInterface = new UserInterface();
         userInterface.promptUserForVessels();
