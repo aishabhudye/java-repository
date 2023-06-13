@@ -60,7 +60,7 @@ public class UserInterface {
         }
     }
 
-    public void promptUserToBombCell() {
+    public void oldpromptUserToBombCell() {
         //The board and the list of cells under attack need to come from the player in the  playerList as in previous method.
         Board boardUnderAttack = new Board(10, 10);
         List<Cell> cellsUnderAttack = new ArrayList<>();
@@ -100,15 +100,38 @@ public class UserInterface {
         }
     }
 
-    public void promptUserToBombCell1() {
+    public void promptUserToBombCell() {
         int counter = 0;
-        for (int i = 0; i < playerList.size(); i++) {
-            Player attacker = playerList.get(i);
-            Player defender = playerList.get(i + 1);
+        int result = counter % 2;
+        Player attacker = playerList.get(result);
+        Player defender = playerList.get((counter + 1) % 2);
+        Board boardUnderAttack = defender.getBoard();
+        while (!attacker.hasAllVesselsOnOpponentBoardBeenSunk(boardUnderAttack)) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Please specify X coordinate to bomb");
+            int xCoordinateToBomb = input.nextInt();
+            System.out.println("Please specify Y coordinate to bomb");
+            int yCoordinateToBomb = input.nextInt();
+            Cell cellBombedByAttacker = new Cell(xCoordinateToBomb, yCoordinateToBomb);
+            if (attacker.hasDroppedBombOnOpponentsBoard(cellBombedByAttacker, boardUnderAttack)) {
+                if (attacker.hasVesselOnOpponentBoardBeenHit(cellBombedByAttacker, boardUnderAttack)) {
+                    System.out.println("Vessel hit = true");
+                }
+            }
+            counter++;
+        }
+        if (attacker.hasAllVesselsOnOpponentBoardBeenSunk(boardUnderAttack)) {
+            System.out.println("Player has won");
+        }
+    }
+
+    public void promptUserToBombCell1() {
+        for (int counter = 0; counter < 1000; counter++) {
+            int result = counter % 2;
+            Player attacker = playerList.get(result);
+            Player defender = playerList.get((counter + 1) % 2);
             Board boardUnderAttack = defender.getBoard();
             if (!attacker.hasAllVesselsOnOpponentBoardBeenSunk(boardUnderAttack)) {
-                int result = counter % 2;
-                attacker = playerList.get(result);
                 Scanner input = new Scanner(System.in);
                 System.out.println("Please specify X coordinate to bomb");
                 int xCoordinateToBomb = input.nextInt();
@@ -120,8 +143,7 @@ public class UserInterface {
                         System.out.println("Vessel hit = true");
                     }
                 }
-                counter++;
-            }else{
+            } else {
                 System.out.println("Player has won");
             }
         }
@@ -132,6 +154,6 @@ public class UserInterface {
         userInterface.promptUserForVessels();
         //At this stage, both players should have a valid board of vessels EACH
 
-        //userInterface.promptUserToBombCell();
+        userInterface.promptUserToBombCell1();
     }
 }
